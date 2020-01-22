@@ -1,0 +1,68 @@
+@import "variables";
+
+.form-element-styles {
+  font-family: $primary-font-family;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5;
+  color: $dark-gray;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+select {
+  height: 3rem;
+  margin: 0 0 1rem;
+  padding: .75rem;
+  appearance: none;
+  border: 1px solid $medium-gray;
+  border-radius: 0;
+  font-family: $primary-font-family;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5;
+  color: $black;
+
+  &::placeholder {
+    @extend .form-element-styles;
+  }
+
+  &:focus {
+    outline: solid 1px $primary;
+  }
+}
+
+label,
+fieldset {
+  clear: both;
+  font-size: 1rem;
+}
+
+textarea {
+  height: 100px;
+
+  &::placeholder {
+    @extend .form-element-styles;
+  }
+}
+
+legend {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+input {
+  &.search,
+  &#search {
+    background: url("/images/icon-search.png") no-repeat center right 10px;
+  }
+}
+
+select {
+  background: white url("/images/select-menu-caret.png") no-repeat right 10px center;
+
+  option {
+    @extend .form-element-styles;
+  }
+}
