@@ -12,8 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('style-guide');
+    return view('auth.login');
 });
-Route::get('test', function () {
+Route::get('/test', function () {
     return view('test');
 });
+
+Route::get('/posts/{post}', 'PostsController@show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

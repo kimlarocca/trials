@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Bitter|Open+Sans:300,600,700&display=swap);@charset "UTF-8";
 
 /*!
  * Font Awesome Free 5.12.0 by @fontawesome - https://fontawesome.com
@@ -6172,7 +6172,7 @@ textarea {
   height: 2.4375rem;
   margin: 0 0 1rem;
   padding: 0.5rem;
-  border: 1px solid #c0bebf;
+  border: 1px solid #e7f5fe;
   border-radius: 0;
   background-color: #fff;
   box-shadow: inset 0 1px 2px rgba(39, 32, 35, 0.1);
@@ -6206,7 +6206,7 @@ textarea:focus {
   outline: none;
   border: 1px solid #393939;
   background-color: #fff;
-  box-shadow: 0 0 5px #c0bebf;
+  box-shadow: 0 0 5px #e7f5fe;
   -webkit-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
   transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
 }
@@ -6223,7 +6223,7 @@ input:disabled,
 input[readonly],
 textarea:disabled,
 textarea[readonly] {
-  background-color: #f4f4f4;
+  background-color: #e7f5fe;
   cursor: not-allowed;
 }
 
@@ -6240,23 +6240,23 @@ input[type=search] {
 }
 
 ::-webkit-input-placeholder {
-  color: #c0bebf;
+  color: #e7f5fe;
 }
 
 ::-moz-placeholder {
-  color: #c0bebf;
+  color: #e7f5fe;
 }
 
 :-ms-input-placeholder {
-  color: #c0bebf;
+  color: #e7f5fe;
 }
 
 ::-ms-input-placeholder {
-  color: #c0bebf;
+  color: #e7f5fe;
 }
 
 ::placeholder {
-  color: #c0bebf;
+  color: #e7f5fe;
 }
 
 [type=file],
@@ -6341,8 +6341,8 @@ label.middle {
 
 .input-group-label {
   padding: 0 1rem;
-  border: 1px solid #c0bebf;
-  background: #f4f4f4;
+  border: 1px solid #e7f5fe;
+  background: #e7f5fe;
   color: #272023;
   text-align: center;
   white-space: nowrap;
@@ -6404,7 +6404,7 @@ legend {
 .fieldset {
   margin: 1.125rem 0;
   padding: 1.25rem;
-  border: 1px solid #c0bebf;
+  border: 1px solid #e7f5fe;
 }
 
 .fieldset legend {
@@ -6420,7 +6420,7 @@ select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: 1px solid #c0bebf;
+  border: 1px solid #e7f5fe;
   border-radius: 0;
   background-color: #fff;
   font-family: inherit;
@@ -6448,13 +6448,13 @@ select:focus {
   outline: none;
   border: 1px solid #393939;
   background-color: #fff;
-  box-shadow: 0 0 5px #c0bebf;
+  box-shadow: 0 0 5px #e7f5fe;
   -webkit-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
   transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
 }
 
 select:disabled {
-  background-color: #f4f4f4;
+  background-color: #e7f5fe;
   cursor: not-allowed;
 }
 
@@ -10033,7 +10033,7 @@ h1,
   font-size: 3.5rem;
   line-height: 3.5rem;
   text-transform: none;
-  font-family: "Beatrice", sans-serif;
+  font-family: "Bitter", sans-serif;
   font-weight: 500;
 }
 
@@ -10050,7 +10050,7 @@ h2,
   font-size: 3.25rem;
   line-height: 3.25rem;
   text-transform: none;
-  font-family: "Beatrice", sans-serif;
+  font-family: "Bitter", sans-serif;
   font-weight: normal;
 }
 
@@ -10067,7 +10067,7 @@ h3,
   font-size: 1.6875rem;
   line-height: 2.125rem;
   text-transform: none;
-  font-family: "Beatrice", sans-serif;
+  font-family: "Bitter", sans-serif;
   font-weight: normal;
 }
 
@@ -10075,13 +10075,7 @@ h4,
 .like-h4 {
   font-size: 1.4375rem;
   line-height: 2.4375rem;
-  text-transform: none;
-  font-weight: normal;
-  font-family: "Beatrice", sans-serif;
-}
-
-h4.strong,
-.like-h4.strong {
+  font-family: "Open Sans", sans-serif;
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -10092,7 +10086,7 @@ h5,
   font-size: 1.125rem;
   line-height: 1.5rem;
   font-weight: 700;
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 h6,
@@ -10100,7 +10094,7 @@ h6,
   font-size: 1rem;
   line-height: 1.5rem;
   text-transform: uppercase;
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
 }
 
@@ -10110,7 +10104,7 @@ p,
   line-height: 1.25rem;
   margin-bottom: 1rem;
   text-transform: none;
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 b,
@@ -10121,6 +10115,10 @@ strong {
 i,
 em {
   font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .small-body-text {
@@ -10174,27 +10172,27 @@ a.skip:hover {
 }
 
 .text-primary {
-  color: #0095da;
+  color: #57b8ff;
 }
 
 .text-secondary {
-  color: #018752;
+  color: #ff6c60;
 }
 
 .text-tertiary {
-  color: #b2d235;
+  color: #3a6271;
 }
 
 .text-quaternary {
-  color: #37b249;
+  color: #3e7e49;
 }
 
 .text-light-gray {
-  color: #f4f4f4;
+  color: #e7f5fe;
 }
 
 .text-medium-gray {
-  color: #c0bebf;
+  color: #e7f5fe;
 }
 
 .text-medium-dark-gray {
@@ -10214,27 +10212,27 @@ a.skip:hover {
 }
 
 .bg-primary {
-  background: #0095da;
+  background: #57b8ff;
 }
 
 .bg-secondary {
-  background: #018752;
+  background: #ff6c60;
 }
 
 .bg-tertiary {
-  background: #b2d235;
+  background: #3a6271;
 }
 
 .bg-quaternary {
-  background: #37b249;
+  background: #3e7e49;
 }
 
 .bg-light-gray {
-  background: #f4f4f4;
+  background: #e7f5fe;
 }
 
 .bg-medium-gray {
-  background: #c0bebf;
+  background: #e7f5fe;
 }
 
 .bg-medium-dark-gray {
@@ -10254,7 +10252,7 @@ a.skip:hover {
 }
 
 textarea::-webkit-input-placeholder, input[type=text]::-webkit-input-placeholder, input[type=email]::-webkit-input-placeholder, input[type=password]::-webkit-input-placeholder, select::-webkit-input-placeholder {
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
@@ -10262,7 +10260,7 @@ textarea::-webkit-input-placeholder, input[type=text]::-webkit-input-placeholder
 }
 
 textarea::-moz-placeholder, input[type=text]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder, select::-moz-placeholder {
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
@@ -10270,7 +10268,7 @@ textarea::-moz-placeholder, input[type=text]::-moz-placeholder, input[type=email
 }
 
 textarea:-ms-input-placeholder, input[type=text]:-ms-input-placeholder, input[type=email]:-ms-input-placeholder, input[type=password]:-ms-input-placeholder, select:-ms-input-placeholder {
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
@@ -10278,7 +10276,7 @@ textarea:-ms-input-placeholder, input[type=text]:-ms-input-placeholder, input[ty
 }
 
 textarea::-ms-input-placeholder, input[type=text]::-ms-input-placeholder, input[type=email]::-ms-input-placeholder, input[type=password]::-ms-input-placeholder, select::-ms-input-placeholder {
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
@@ -10292,7 +10290,7 @@ input[type=text]::placeholder,
 input[type=email]::placeholder,
 input[type=password]::placeholder,
 select::placeholder {
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
@@ -10309,9 +10307,9 @@ select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: 1px solid #c0bebf;
+  border: 1px solid #e7f5fe;
   border-radius: 0;
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
@@ -10322,7 +10320,7 @@ input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus,
 select:focus {
-  outline: solid 1px #0095da;
+  outline: solid 1px #57b8ff;
 }
 
 label,
@@ -10356,15 +10354,15 @@ button,
   display: inline-block;
   text-align: center;
   cursor: pointer;
-  font-family: "Beatrice", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   padding: 0.75rem;
-  background-color: #0095da;
+  background-color: #57b8ff;
   color: white;
   font-size: 0.875rem;
   line-height: 1.25rem;
   text-transform: uppercase;
-  border: 2px solid #0095da;
+  border: 2px solid #57b8ff;
   -webkit-transition: 0.2s all linear;
   transition: 0.2s all linear;
   opacity: 1;
@@ -10400,15 +10398,15 @@ button.ghost,
 .button:visited.ghost,
 .button:active.ghost {
   background-color: transparent;
-  border: 2px solid #0095da;
-  color: #0095da;
+  border: 2px solid #57b8ff;
+  color: #57b8ff;
 }
 
 button.ghost:hover,
 .button.ghost:hover,
 .button:visited.ghost:hover,
 .button:active.ghost:hover {
-  background-color: #0095da;
+  background-color: #57b8ff;
   color: white;
   opacity: 1;
 }
@@ -10427,7 +10425,7 @@ button.ghost-white:hover,
 .button:visited.ghost-white:hover,
 .button:active.ghost-white:hover {
   background-color: #fff;
-  color: #0095da;
+  color: #57b8ff;
   opacity: 1;
 }
 
@@ -10454,15 +10452,15 @@ button.ghost-primary,
 .button:visited.ghost-primary,
 .button:active.ghost-primary {
   background-color: transparent;
-  border: 2px solid #0095da;
-  color: #0095da;
+  border: 2px solid #57b8ff;
+  color: #57b8ff;
 }
 
 button.ghost-primary:hover,
 .button.ghost-primary:hover,
 .button:visited.ghost-primary:hover,
 .button:active.ghost-primary:hover {
-  background-color: #0095da;
+  background-color: #57b8ff;
   color: #fff;
   opacity: 1;
 }
@@ -10472,15 +10470,15 @@ button.ghost-secondary,
 .button:visited.ghost-secondary,
 .button:active.ghost-secondary {
   background-color: transparent;
-  border: 2px solid #018752;
-  color: #018752;
+  border: 2px solid #ff6c60;
+  color: #ff6c60;
 }
 
 button.ghost-secondary:hover,
 .button.ghost-secondary:hover,
 .button:visited.ghost-secondary:hover,
 .button:active.ghost-secondary:hover {
-  background-color: #018752;
+  background-color: #ff6c60;
   color: #fff;
   opacity: 1;
 }
@@ -10503,16 +10501,113 @@ button.ghost-secondary:hover,
   background: white;
 }
 
+.login {
+  display: -webkit-box;
+  display: flex;
+  color: #272023;
+  min-height: 100vh;
+  padding: 2rem;
+  background: url("/images/background.jpg") no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  font-weight: 600;
+}
+
+.login .content {
+  position: relative;
+  width: 475px;
+  max-width: 100%;
+  margin: auto;
+  padding: 3rem;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.login h1 {
+  color: #fff;
+  text-shadow: 0 0 20px #393939;
+}
+
+.login h4 {
+  color: #3a6271;
+  text-shadow: 0 0 20px #393939;
+}
+
+.login button {
+  width: 100%;
+}
+
+.login .remember-me {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.login a,
+.login a:visited,
+.login a:active {
+  color: #fff;
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.login a:hover,
+.login a:visited:hover,
+.login a:active:hover {
+  color: #393939;
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+nav {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 1.5rem;
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.2rem;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0.5rem;
+}
+
+nav a,
+nav a:visited,
+nav a:active {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:visited:hover,
+nav a:active:hover {
+  color: #ff6c60;
+  text-decoration: none;
+}
+
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body,
 html {
-  background-color: white;
+  background-color: #fff;
   font-size: 16px;
-  font-family: "Beatrice", sans-serif;
-  color: black;
+  font-family: "Open Sans", sans-serif;
+  color: #272023;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -10533,7 +10628,7 @@ img {
 a,
 a:visited,
 a:active {
-  color: #0095da;
+  color: #ff6c60;
   text-decoration: none;
   -webkit-transition: 0.2s all linear;
   transition: 0.2s all linear;
@@ -10542,8 +10637,8 @@ a:active {
 a:hover,
 a:visited:hover,
 a:active:hover {
-  color: #272023;
-  text-decoration: none;
+  color: #ff6c60;
+  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -10578,7 +10673,7 @@ a:active:hover.button {
 hr {
   border: 0;
   height: 1px;
-  background: #c0bebf;
+  background: #e7f5fe;
   margin: 2rem 0;
 }
 
@@ -10586,10 +10681,6 @@ hr {
   hr {
     margin: 1rem 0;
   }
-}
-
-hr.white {
-  background: white;
 }
 
 .container {
@@ -10602,6 +10693,11 @@ hr.white {
   .container {
     width: calc(100% - 2rem);
   }
+}
+
+.container-smaller {
+  max-width: 1000px;
+  margin: 0 auto 0 0;
 }
 
 .section-padding-100 {
@@ -10622,9 +10718,5 @@ hr.white {
   .section-padding-50 {
     padding-top: 25px;
   }
-}
-
-.section-padding-25 {
-  padding-top: 25px;
 }
 
