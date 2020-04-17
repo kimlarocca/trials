@@ -141,7 +141,7 @@
         data () {
             return {
                 trialData: [],
-                currentStep: 3
+                currentStep: 1
             }
         },
         props: {
