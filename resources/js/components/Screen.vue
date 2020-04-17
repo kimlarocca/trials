@@ -12,13 +12,13 @@
                         <ul class="stepper">
                             <li :class="currentStep===1 ? 'current' : ''">Basic Information</li>
                             <li :class="currentStep===2 ? 'current' : ''">Trial Specific Questions</li>
-                            <li :class="currentStep===3 ? 'current' : ''">Create An Account</li>
+                            <li :class="currentStep===3 ? 'current' : ''">Create Your Profile</li>
                         </ul>
                     </template>
                     <template v-else>
                         <ul class="stepper">
                             <li :class="currentStep===1 ? 'current' : ''">Basic Information</li>
-                            <li :class="currentStep===3 ? 'current' : ''">Create An Account</li>
+                            <li :class="currentStep===3 ? 'current' : ''">Create Your Profile</li>
                         </ul>
                     </template>
                 </div>
@@ -98,6 +98,12 @@
                             <textarea id="custom2"></textarea>
                         </div>
                         <div class="cell medium-12">
+                            <label for="custom3">Custom question three:</label> <input type="number" id="custom3">
+                        </div>
+                        <div class="cell medium-12">
+                            <label for="custom4">Custom question four:</label> <input type="number" id="custom4">
+                        </div>
+                        <div class="cell medium-12">
                             <a class="button" tabindex="0" @click="goBack">go back</a>
                             <a class="button" tabindex="0" @click="goAhead">continue</a>
                         </div>
@@ -106,24 +112,30 @@
             </transition>
             <transition name="fade">
                 <div v-show="currentStep===3" class="form-container">
-                    <h2 class="margin-bottom-2">Create An Account:</h2>
+                    <h2 class="margin-bottom-2">Create Your Profile:</h2>
                     <form method="POST" action="/register">
                         <div class="grid-x grid-margin-x grid-margin-y">
-                            <div class="cell large-6">
-                                <label for="name">Name</label> <input type="text" id="name">
-                            </div>
-                            <div class="cell large-6">
-                                <label for="email">Email</label> <input type="email" id="email">
+                            <div class="cell medium-12">
+                                <label for="name">Your Name:</label> <input type="text" id="name">
                             </div>
                             <div class="cell medium-12">
-                                <label for="phone">Phone Number</label> <input type="number" id="phone">
+                                <label for="patientname">Patient's Name (if you are filling this out on behalf of someone else):</label> <input type="text" id="patientname">
                             </div>
-                            <div class="cell medium-12">
-                                <label for="password">Password</label> <input type="password" id="password">
+                            <div class="cell large-6 medium-12">
+                                <label for="email">Email Address:</label> <input type="email" id="email">
                             </div>
-                            <div class="cell medium-12">
+                            <div class="cell large-6 medium-12">
+                                <label for="phone">Phone Number:</label> <input type="number" id="phone">
+                            </div>
+                            <div class="cell large-6 medium-12">
+                                <label for="password">Password:</label> <input type="password" id="password">
+                            </div>
+                            <div class="cell large-6 medium-12">
+                                <label for="password2">Retype Password:</label> <input type="password" id="password2">
+                            </div>
+                            <div class="cell large-12 medium-12">
                                 <a class="button" tabindex="0" @click="goBack">go back</a>
-                                <a class="button" tabindex="0">save & finish</a>
+                                <a class="button" tabindex="0">save & submit</a>
                             </div>
                         </div>
                     </form>

@@ -15,12 +15,12 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aut, cum dolorem et, excepturi
                     illum inventore labore laboriosam necessitatibus nisi non odio officiis quo repellat saepe sequi
                     tempore veniam!</p>
-                <div><a class="button">get started</a> <a class="button ghost">learn more</a></div>
+                <div><a class="button" href="/screen/">get started</a> <a class="button ghost" href="#more">learn more</a></div>
             </div>
         </div>
     </section>
 
-    <section class="container">
+    <section class="container" id="more">
         <div class="grid-x grid-margin-x grid-margin-y align-middle">
             <div class="cell medium-6 fancy-image margin-bottom-1">
                 <img alt="woman on her laptop doing an online screening"
