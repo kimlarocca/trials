@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <h1>style guide</h1>
+        <h1>style guide <i class="fa fas fa-heart"></i></h1>
 
         <section id="typography">
             <div class="section-padding-50"></div>
@@ -62,6 +62,7 @@
             <h3 class="margin-bottom-2">Buttons</h3>
             <div class="section-padding-50"></div>
             <p><a class="button">.button</a></p>
+            <p><a class="button secondary">.button .secondary</a></p>
             <p><a class="button ghost">.button .ghost</a></p>
             <p><a class="button ghost-black">.button .ghost-black</a></p>
             <p><a class="button ghost-primary">.button .ghost-primary</a></p>
@@ -79,7 +80,7 @@
 
             <div class="grid-x grid-margin-x grid-margin-y">
                 <div class="cell small-12 medium-auto">
-                    <p><strong>Inputs &amp; Text Areas</strong></p>
+                    <p><strong>Inputs & Textareas</strong></p>
                     <label>Text Input
                         <input type="text" placeholder="here is some placeholder text">
                     </label>
@@ -101,7 +102,7 @@
                         <label for="inline-input" class="hide-ally-element">Label</label>
                         <input id="inline-input" class="input-group-field" type="number">
                         <div class="input-group-button">
-                            <input type="submit" class="button" value="Submit">
+                            <input type="submit" class="button primary" value="Submit">
                         </div>
                     </div>
                 </div>
@@ -123,15 +124,20 @@
                             <option value="hardball">Hardball</option>
                         </select>
                     </label>
-                    <fieldset class="large-5 cell">
-                        <legend>Radio Buttons</legend>
-                        <input type="radio" name="pokemon" value="Red" id="pokemonRed" required><label
-                                for="pokemonRed">Red</label>
-                        <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label
-                                for="pokemonBlue">Blue</label>
-                        <input type="radio" name="pokemon" value="Yellow" id="pokemonYellow"><label
-                                for="pokemonYellow">Yellow</label>
+                    <p><strong>Radio Buttons</strong></p>
+                    <div class="bg-light-gray border-radius padding-1 margin-bottom-1">
+                    <fieldset>
+                        <legend class="hide-ally-element">How far are you willing to travel?</legend>
+                        <input type="radio" id="distance-20" name="distance" value="20" checked>
+                        <label for="distance-20">20 Miles</label>
+                        <input type="radio" id="distance-50" name="distance" value="50" checked>
+                        <label for="distance-50">50 Miles</label>
+                        <input type="radio" id="distance-100" name="distance" value="100" checked>
+                        <label for="distance-100">100 Miles</label>
+                        <input type="radio" id="distance-any" name="distance" value="any">
+                        <label for="distance-any">Any</label>
                     </fieldset>
+                    </div>
                     <fieldset class="large-7 cell">
                         <legend>Checkboxes</legend>
                         <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>

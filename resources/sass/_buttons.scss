@@ -7,92 +7,102 @@ button,
 .button,
 .button:visited,
 .button:active {
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  font-family: $primary-font-family;
-  font-weight: 700;
-  padding: .75rem;
-  background-color: $background;
-  color: $color;
-  font-size: .875rem;
-  line-height: 1.25rem;
-  text-transform: uppercase;
-  border: 2px solid $background;
-  transition: $transition;
-  opacity: 1;
-  text-decoration: none;
-
-  @media all and (max-width: $breakpoint-mobile) {
-    width: 100%;
-  }
-
-  &:hover {
+    max-width: 100%;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    font-family: $primary-font-family;
+    font-weight: 700;
+    padding: .75rem 1.5rem;
+    background-color: $background;
     color: $color;
-    opacity: $opacity-on-hover;
-  }
-
-  &.full-width {
-    width: 100%;
-  }
-
-  &.ghost {
-    background-color: transparent;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    text-transform: uppercase;
     border: 2px solid $background;
-    color: $background;
+    border-radius: 1.5rem;
+    transition: $transition;
+    opacity: 1;
+    text-decoration: none;
 
     &:hover {
-      background-color: $background;
-      color: $color;
-      opacity: 1;
+        color: $white;
+        background-color: $secondary;
+        border: 2px solid $secondary;
     }
-  }
 
-  &.ghost-white {
-    background-color: transparent;
-    border: 2px solid $white;
-    color: $white;
-
-    &:hover {
-      background-color: $white;
-      color: $primary;
-      opacity: 1;
+    &.full-width {
+        width: 100%;
     }
-  }
 
-  &.ghost-black {
-    background-color: transparent;
-    border: 2px solid $black;
-    color: $black;
+    &.secondary {
+        background-color: $secondary;
+        border: 2px solid $secondary;
 
-    &:hover {
-      background-color: $black;
-      color: $white;
-      opacity: 1;
+        &:hover {
+            color: $white;
+            background-color: $primary;
+            border: 2px solid $primary;
+        }
     }
-  }
 
-  &.ghost-primary {
-    background-color: transparent;
-    border: 2px solid $primary;
-    color: $primary;
+    &.ghost {
+        background-color: transparent;
+        border: 2px solid $background;
+        color: $background;
 
-    &:hover {
-      background-color: $primary;
-      color: $white;
-      opacity: 1;
+        &:hover {
+            background-color: $background;
+            color: $color;
+            opacity: 1;
+        }
     }
-  }
 
-  &.ghost-secondary {
-    background-color: transparent;
-    border: 2px solid $secondary;
-    color: $secondary;
+    &.ghost-white {
+        background-color: transparent;
+        border: 2px solid $white;
+        color: $white;
 
-    &:hover {
-      background-color: $secondary;
-      color: $white;
-      opacity: 1;
+        &:hover {
+            background-color: $white;
+            color: $black;
+            opacity: 1;
+        }
     }
-  }
+
+    &.ghost-black {
+        background-color: transparent;
+        border: 2px solid $black;
+        color: $black;
+
+        &:hover {
+            background-color: $black;
+            color: $white;
+            opacity: 1;
+        }
+    }
+
+    &.ghost-primary {
+        background-color: transparent;
+        border: 2px solid $primary;
+        color: $primary;
+
+        &:hover {
+            background-color: $primary;
+            color: $white;
+            opacity: 1;
+        }
+    }
+
+    &.ghost-secondary {
+        background-color: transparent;
+        border: 2px solid $secondary;
+        color: $secondary;
+
+        &:hover {
+            background-color: $secondary;
+            color: $white;
+            opacity: 1;
+        }
+    }
 }

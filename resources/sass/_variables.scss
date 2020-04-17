@@ -1,34 +1,36 @@
 $font-size-base: 1rem;
 $line-height-base: 1.6;
 
-$breakpoint-tablet: 1240px;
+$breakpoint-tablet: 1100px;
 $breakpoint-mobile: 768px;
 
+$border-radius: 1.5rem;
+
 //Fonts
-@import url('https://fonts.googleapis.com/css?family=Bitter|Open+Sans:300,600,700&display=swap');
-$primary-font-family: 'Open Sans', sans-serif;
-$secondary-font-family: 'Bitter', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap');
+$primary-font-family: 'Poppins', sans-serif;
+$secondary-font-family: 'Poppins', sans-serif;
 $font-awesome: 'Font Awesome 5 Free';
 $font-awesome-brands: 'Font Awesome 5 Brands';
 
 //Colors
 $white: #fff;
 $black: #272023;
-$light-gray: #e7f5fe;
-$medium-gray: #e7f5fe;
+$light-gray: #dedce5;
+$medium-gray: #cccccc;
 $medium-dark-gray: #727272;
 $dark-gray: #393939;
 
-$primary: #57b8ff;
-$secondary: #ff6c60;
-$tertiary: #3a6271;
-$quaternary: #3e7e49;
+$primary: #4458a3;
+$secondary: #ff7575;
+$tertiary: #b6eefe;
+$quaternary: #dedce5;
 
 //Links
-$link-color: $secondary;
-$link-color-hover: $secondary;
+$link-color: $primary;
+$link-color-hover: $primary;
 $link-decoration: none;
-$link-decoration-hover: underline;
+$link-decoration-hover: none;
 
 //Transitions
 $transition: .2s all linear;

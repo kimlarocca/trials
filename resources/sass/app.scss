@@ -46,14 +46,29 @@ a:active {
     color: $link-color;
     text-decoration: $link-decoration;
     transition: $transition;
+    padding-bottom: .25rem;
+    border-bottom: solid 1px transparent;
 
     &:hover {
         color: $link-color-hover;
         text-decoration: $link-decoration-hover;
         cursor: pointer;
+        border-bottom: solid 1px $link-color;
 
         &.button {
             text-decoration: none;
+        }
+    }
+
+    &.learn-more {
+        font-weight: 700;
+        text-transform: uppercase;
+
+        &:after {
+            font-family: $font-awesome;
+            font-weight: 900;
+            content: '\f061';
+            margin-left: .5rem;
         }
     }
 }
@@ -95,7 +110,7 @@ hr {
     margin: auto;
 
     @media all and (max-width: $breakpoint-tablet) {
-        width: calc(100% - 2rem);
+        width: calc(100% - 4rem);
     }
 }
 
@@ -116,4 +131,18 @@ hr {
     @media all and (max-width: $breakpoint-mobile) {
         padding-top: 25px;
     }
+}
+
+.border-radius {
+    border-radius: $border-radius;
+}
+
+// vue transitions
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0
 }

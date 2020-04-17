@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="container">
-        <example-component></example-component>
+        <trial-by-nct></trial-by-nct>
     </div>
 
 @endsection

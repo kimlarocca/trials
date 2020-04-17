@@ -1,0 +1,19 @@
+.fancy-image {
+    position: relative;
+
+    img {
+        padding: 2rem 0 0 4rem;
+        border-bottom-right-radius: $border-radius;
+    }
+
+    .background {
+        position: absolute;
+        top: 0;
+        bottom: 2rem;
+        right: 4rem;
+        left: 0;
+        background: $secondary;
+        border-radius: $border-radius;
+        z-index: -1;
+    }
+}

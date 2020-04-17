@@ -1,56 +1,14 @@
 @import "../variables";
 
 .login {
-    display: flex;
-    color: $black;
-    min-height: 100vh;
-    padding: 2rem;
-    background: url("/images/background.jpg") no-repeat center center;
-    background-size: cover;
-    width: 100%;
-    font-weight: 600;
+    position: relative;
+    background: url("/images/hero.png") no-repeat top left;
 
-    .content {
-        position: relative;
-        width: 475px;
-        max-width: 100%;
-        margin: auto;
-        padding: 3rem;
-        box-shadow: 0 0 5px 0 rgba(0,0,0,0.15);
-        background: rgba(255,255,255,.25);
-    }
+    // form
 
-    h1 {
-        color: $white;
-        text-shadow: 0 0 20px $dark-gray;
-    }
-
-    h4 {
-        color: $tertiary;
-        text-shadow: 0 0 20px $dark-gray;
-    }
-
-    button {
-        width: 100%;
-    }
-
-    .remember-me {
-        color: $white;
-        font-weight: 600;
-        font-size: .875rem;
-        text-transform: uppercase;
-    }
-
-    a,
-    a:visited,
-    a:active {
-        color: $white;
-        text-decoration: underline;
-        opacity: 1;
-        &:hover {
-            color: $dark-gray;
-            text-decoration: underline;
-            opacity: $opacity-on-hover;
-        }
+    input,
+    textarea {
+        border: 1px solid transparent;
+        margin: 0 0 1rem;
     }
 }

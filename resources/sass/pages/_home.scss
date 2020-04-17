@@ -1,0 +1,48 @@
+.home {
+    position: relative;
+    background: url("/images/home-hero.png") no-repeat top right;
+
+    @media all and (max-width: $breakpoint-tablet) {
+        background: url("/images/home-hero.png") no-repeat top -50px right;
+    }
+
+    &:before {
+        content: 'Screen Me';
+        position: absolute;
+        width: 10000px;
+        top: 50px;
+        left: 0;
+        color: $light-gray;
+        opacity: .25;
+        font-size: 15rem;
+        font-weight: 700;
+        z-index: -1;
+        overflow-x: hidden;
+    }
+
+    .hero {
+        height: 550px;
+        padding-bottom: 150px;
+        @media all and (max-width: $breakpoint-tablet) {
+            height: auto;
+            background: $white;
+            border-radius: $border-radius;
+            margin: 325px 0 0;
+            padding: 1rem;
+        }
+        @media all and (max-width: $breakpoint-mobile) {
+            margin: 200px 0 0;
+            padding: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .button {
+            &:first-child {
+                margin-right: .5rem;
+            }
+        }
+    }
+}
