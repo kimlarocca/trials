@@ -81,7 +81,7 @@
                 this.trialAdded = false
                 this.noResultsFound = false
                 axios
-                    .post('/api/trials/', {
+                    .post('/api/trials', {
                         user_id: this.userID,
                         ncit: this.possibleTrials.NCTId,
                         title: this.possibleTrials.BriefTitle

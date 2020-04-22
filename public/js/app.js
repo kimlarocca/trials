@@ -2365,7 +2365,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.trialAdded = false;
       this.noResultsFound = false;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/trials/', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/trials', {
         user_id: this.userID,
         ncit: this.possibleTrials.NCTId,
         title: this.possibleTrials.BriefTitle
