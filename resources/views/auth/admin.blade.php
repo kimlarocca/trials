@@ -1,5 +1,5 @@
 @extends('layouts/main', ['bodyClass' => 'login'])
-@section('title', 'Dashboard')
+@section('title', 'Admin Dashboard')
 
 @section('content')
 
@@ -10,7 +10,7 @@
             <div class="cell medium-12 large-4 padding-top-3">
             </div>
             <div class="cell medium-12 bg-light-gray border-radius padding-2">
-                <h1 class="like-h2 margin-bottom-2">{{ Auth::user()->name }}'s Dashboard</h1>
+                <h1 class="like-h2 margin-bottom-2">{{ Auth::user()->name }}'s Admin Dashboard</h1>
 
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -18,8 +18,8 @@
                     </div>
                 @endif
 
-                <h3 class="margin-bottom-2">My Trials</h3>
-                <trials></trials>
+                <h3 class="margin-bottom-2">All Imported Trials</h3>
+                <trial-list></trial-list>
 
             </div>
         </div>

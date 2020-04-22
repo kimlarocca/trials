@@ -1,9 +1,12 @@
-@extends('layouts.app', ['mainClass' => 'login'])
-@section('title', '4 Site | Register')
+@extends('layouts/main', ['bodyClass' => 'login'])
+@section('title', 'Register')
 
 @section('content')
-    <div class="content">
-        <h1>Register</h1>
+
+    @include('partials._header')
+
+    <section class="container bg-light-gray border-radius padding-3">
+        <h1>New Client Registration</h1>
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -64,11 +67,11 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="button">
                         {{ __('Register') }}
                     </button>
                 </div>
             </div>
         </form>
-    </div>
+    </section>
 @endsection
