@@ -20,8 +20,10 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('trial-by-nct', require('./components/TrialByNct.vue').default);
+Vue.component('v-nav', require('./components/Nav.vue').default);
 Vue.component('loader', require('./components/Loader.vue').default);
 Vue.component('screen', require('./components/Screen.vue').default);
+Vue.component('count-up', require('./components/CountUp.vue').default);
 Vue.component('trials', require('./components/Trials.vue').default);
 Vue.component('trial', require('./components/Trial.vue').default);
 Vue.component('trial-list', require('./components/TrialList.vue').default);

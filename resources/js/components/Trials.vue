@@ -2,7 +2,7 @@
     <div class="grid-x grid-margin-x grid-margin-y">
         <div class="cell medium-12 large-8">
             <div v-for="(trial, index) in myTrials" :key="index">
-                <trial :ncit="trial.ncit" :title="trial.title"></trial>
+                <trial :ncit="trial.ncit" :title="trial.title" :showDetails="index===0"></trial>
             </div>
             <p v-if="componentMounted && myTrials.length === 0">You don't have any trials added yet. Use the form on
                 your right to import
@@ -13,13 +13,17 @@
         </div>
         <div class="cell medium-12 large-4">
             <div class="bg-tertiary border-radius padding-2">
-                <p v-if="trialAdded">Your trial has been added!</p>
+                <transition name="slide">
+                    <p v-if="trialAdded" class="bg-secondary text-white text-center"><strong>Your trial has been
+                        added!</strong></p>
+                </transition>
                 <h4>Import A New Trial</h4>
                 <p>Enter your NCIT here:</p>
                 <label for="ncit" class="hide-ally-element">NCIT</label>
                 <input type="text" v-model="ncit" id="ncit">
                 <a class="button" tabindex="0" @click="findNCIT">search</a>
-                <p class="margin-top-1" v-if="!possibleTrials && noResultsFound">No results found! Please try your search again.</p>
+                <p class="margin-top-1" v-if="!possibleTrials && noResultsFound">No results found! Please try your
+                    search again.</p>
                 <template v-if="possibleTrials">
                     <p class="margin-top-1"><strong>Is this the right one?</strong></p>
                     <p>NCT Id: {{possibleTrials.NCTId}}</p>
@@ -90,7 +94,8 @@
                         console.log('added ' + response),
                             this.possibleTrials = null,
                             this.trialAdded = true,
-                            this.getTrials()
+                            this.getTrials(),
+                            this.ncit = ''
                     ))
                     .catch(function (error) {
                         console.log(error)

@@ -12,10 +12,16 @@
         <div class="grid-x grid-margin-x grid-margin-y align-bottom hero">
             <div class="cell medium-12 large-5">
                 <h1>Screen Me</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aut, cum dolorem et, excepturi
-                    illum inventore labore laboriosam necessitatibus nisi non odio officiis quo repellat saepe sequi
-                    tempore veniam!</p>
-                <div><a class="button" href="/screen/">get started</a> <a class="button ghost" href="#more">learn more</a></div>
+                <h3 class="text-primary">Know All Your Treatment Options</h3>
+                <p>Millions of people are diagnosed with medical conditions every year. Knowing all your treatment
+                    options is critical. ScreenMe helps patients and caregivers like you find relevant clinical trials
+                    faster and easier. <a href="/screen">Answer a few screening questions</a> to find clinical trials
+                    you may qualify for.</p>
+                <div>
+                    <a aria-label="get started with screen me" class="button" href="/screen">get screened</a>
+                    <a aria-label="learn more about the clinical trial process" class="button ghost" href="/resources">learn
+                        more</a>
+                </div>
             </div>
         </div>
     </section>
@@ -28,24 +34,28 @@
                 <div class="background"></div>
             </div>
             <div class="cell medium-6">
-                <h2>Here's a subheader</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi, aut distinctio dolorem
-                    eligendi eos, ex facere inventore maxime nemo obcaecati quae, quasi sit soluta totam. Ea facilis
-                    ipsam neque!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi, aut distinctio dolorem
-                    eligendi eos, ex facere inventore maxime nemo obcaecati quae, quasi sit soluta totam. Ea facilis
-                    ipsam neque!</p>
-                <p><a href="#" class="learn-more">Learn More About This</a></p>
+                <h2>Need help recruiting?</h2>
+                <p>Learn more about how to get your clinical trial screen online and help potential patients find
+                    you!</p>
+                <p>Recruiting for clinical trials has become increasingly difficult over the years. Learn more about
+                    ScreenMe and its easy to use interface that helps find and route patients to your clinical trial
+                    centers.</p>
+                <p><a href="#" class="learn-more">Contact us to get started</a></p>
             </div>
         </div>
     </section>
 
-    <section class="container section-padding-100">
+    <div class="section-padding-100"></div>
+    <hr>
+    <div class="section-padding-100"></div>
+
+    <section class="container">
+        <h2 class="text-center margin-bottom-3">How does it work?</h2>
         <div class="grid-x grid-margin-x grid-margin-y text-center">
             <div class="cell medium-4 icon-card">
                 <i class="fa fas fa-cloud-upload-alt"></i>
-                <h3>Import Clinical Trial</h3>
-                <p>Easily import your study data from ClinicalTrials.gov wit the click of a button.</p>
+                <h3>Import Your Clinical Trials</h3>
+                <p>Easily import your study data from ClinicalTrials.gov with the click of a button.</p>
             </div>
             <div class="cell medium-4 icon-card">
                 <i class="fa fas fa-link"></i>
@@ -58,6 +68,7 @@
                 <p>Our real-time dashboard allows you to view your trial's screening results.</p>
             </div>
         </div>
+        <p class="text-center margin-top-3"><a class="button" href="/contact">contact us to get started!</a></p>
     </section>
 
     @include('partials._footer')

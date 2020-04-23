@@ -15,6 +15,22 @@ Route::get('/', function () {
     return view('/index');
 });
 
+Route::get('/search', function () {
+    return view('/search');
+});
+
+Route::get('/resources', function () {
+    return view('/resources');
+});
+
+Route::get('/contact', function () {
+    return view('/contact');
+});
+
+Route::get('/privacy', function () {
+    return view('/privacy');
+});
+
 Route::get('/screen', function () {
     return view('/screen');
 });

@@ -5,20 +5,20 @@
             <h1 class="margin-bottom-2">Patient Screening</h1>
             <div class="bg-white border-radius padding-2">
                 <div class="basic-trial-info">
-                    <template v-if="nct">
+                    <template v-if="trialsFound > 0">
                         <p class="strong">{{ trialData.BriefTitle }}</p>
                         <p class="margin-bottom-2 em">NCIT Number: <a :href="'https://clinicaltrials.gov/ct2/show/'+nct"
                                                                       target="_blank">{{nct}}</a></p>
                         <ul class="stepper">
-                            <li :class="currentStep===1 ? 'current' : ''">Basic Information</li>
+                            <li :class="currentStep===1 ? 'current' : ''">Basic Questions</li>
                             <li :class="currentStep===2 ? 'current' : ''">Trial Specific Questions</li>
-                            <li :class="currentStep===3 ? 'current' : ''">Create Your Profile</li>
+                            <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
                         </ul>
                     </template>
                     <template v-else>
                         <ul class="stepper">
-                            <li :class="currentStep===1 ? 'current' : ''">Basic Information</li>
-                            <li :class="currentStep===3 ? 'current' : ''">Create Your Profile</li>
+                            <li :class="currentStep===1 ? 'current' : ''">Basic Questions</li>
+                            <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
                         </ul>
                     </template>
                 </div>
@@ -112,7 +112,7 @@
             </transition>
             <transition name="fade">
                 <div v-show="currentStep===3" class="form-container">
-                    <h2 class="margin-bottom-2">Create Your Profile:</h2>
+                    <h2 class="margin-bottom-2">Contact Information:</h2>
                     <form method="POST" action="/register">
                         <div class="grid-x grid-margin-x grid-margin-y">
                             <div class="cell medium-12">
@@ -127,11 +127,15 @@
                             <div class="cell large-6 medium-12">
                                 <label for="phone">Phone Number:</label> <input type="number" id="phone">
                             </div>
-                            <div class="cell large-6 medium-12">
-                                <label for="password">Password:</label> <input type="password" id="password">
-                            </div>
-                            <div class="cell large-6 medium-12">
-                                <label for="password2">Retype Password:</label> <input type="password" id="password2">
+                            <div class="cell large-12 medium-12">
+                                <p>Do you want to sign up for clinical trial alerts?</p>
+                                <fieldset>
+                                    <legend class="hide-ally-element">Sign up for clinical trial alerts:</legend>
+                                    <input type="radio" id="subscribe-yes" name="subscribe" value="1" checked>
+                                    <label for="subscribe-yes">Yes</label>
+                                    <input type="radio" id="subscribe-no" name="subscribe" value="0">
+                                    <label for="subscribe-no">No</label>
+                                </fieldset>
                             </div>
                             <div class="cell large-12 medium-12">
                                 <a class="button" tabindex="0" @click="goBack">go back</a>
@@ -141,6 +145,9 @@
                     </form>
                 </div>
             </transition>
+        </div>
+        <div class="cell medium-12 large-12">
+            <p class="text-center padding-vertical-3"><em>* screening online does not guarantee entry into a clinical trial</em></p>
         </div>
     </div>
 </template>
@@ -153,7 +160,8 @@
         data () {
             return {
                 trialData: [],
-                currentStep: 1
+                currentStep: 1,
+                trialsFound: 0
             }
         },
         props: {
@@ -162,7 +170,11 @@
         mounted () {
             axios.get('https://clinicaltrials.gov/api/query/full_studies?expr=' + this.nct + '&max_rnk=1&fmt=JSON')
                 .then(response => {
+                    this.trialsFound = response.data.FullStudiesResponse.NStudiesFound,
                     this.trialData = response.data.FullStudiesResponse.FullStudies[0].Study.ProtocolSection.IdentificationModule
+                })
+                .catch(function (error) {
+                    console.log(error)
                 })
         },
         methods: {

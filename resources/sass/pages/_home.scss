@@ -6,6 +6,14 @@
         background: url("/images/home-hero.png") no-repeat top -50px right;
     }
 
+    &.contact {
+        background: url("/images/contact-hero.png") no-repeat top right;
+
+        @media all and (max-width: $breakpoint-tablet) {
+            background: url("/images/contact-hero.png") no-repeat top -50px right;
+        }
+    }
+
     &:before {
         content: 'Screen Me';
         position: absolute;
