@@ -30,7 +30,7 @@
         <div class="grid-x grid-margin-x grid-margin-y align-middle">
             <div class="cell medium-6 fancy-image margin-bottom-1">
                 <img alt="woman on her laptop doing an online screening"
-                     src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=60">
+                     src="/images/home-image.jpg">
                 <div class="background"></div>
             </div>
             <div class="cell medium-6">
