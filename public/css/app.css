@@ -10986,6 +10986,10 @@ footer {
   padding: 3rem 0;
 }
 
+footer .logo {
+  width: 150px;
+}
+
 header {
   position: relative;
   padding: 1.5rem 0;

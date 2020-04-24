@@ -6,7 +6,7 @@
                 <a href="/">Home</a> / <a href="/contact">Contact Us</a> / <a href="/privacy">Privacy Policy</a>
             </div>
             <div class="cell medium-4 text-right">
-                <img src="https://via.placeholder.com/200x60?text=logo" alt="placeholder image"/>
+                <img src="/images/logo.png" alt="ScreenMe logo" class="logo"/>
             </div>
         </div>
     </div>
