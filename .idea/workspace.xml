@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b38a959b-71a6-4e00-8a74-158fbdc433a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/SendEmailController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Mail/SendMail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/email-template.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/errors/404.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/errors/503.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_forms.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +123,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/errors" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -144,11 +137,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/errors" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/auth" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers" />
-      <recent name="$PROJECT_DIR$/resources/sass/components" />
     </key>
   </component>
   <component name="RunManager">
@@ -183,7 +176,7 @@
       <workItem from="1587310349087" duration="3000" />
       <workItem from="1587316897505" duration="27000" />
       <workItem from="1587322176906" duration="15000" />
-      <workItem from="1587562317183" duration="33502000" />
+      <workItem from="1587562317183" duration="34085000" />
     </task>
     <servers />
   </component>
@@ -238,12 +231,12 @@
     <state x="376" y="176" width="687" height="518" key="find.popup/0.23.1440.825@0.23.1440.825" timestamp="1579734951464" />
     <state x="376" y="177" width="687" height="522" key="find.popup/0.23.1440.830@0.23.1440.830" timestamp="1586390331005" />
     <state x="1365" y="1617" width="687" height="522" key="find.popup/0.23.3440.1417/989.1463.1440.830@989.1463.1440.830" timestamp="1587742310894" />
-    <state x="385" y="173" width="670" height="681" key="search.everywhere.popup" timestamp="1587651759910">
-      <screen x="0" y="23" width="1440" height="830" />
+    <state x="1374" y="1613" width="670" height="681" key="search.everywhere.popup" timestamp="1587742817614">
+      <screen x="989" y="1463" width="1440" height="830" />
     </state>
     <state x="385" y="172" width="670" height="676" key="search.everywhere.popup/0.23.1440.825@0.23.1440.825" timestamp="1579717828238" />
     <state x="385" y="173" width="670" height="681" key="search.everywhere.popup/0.23.1440.830@0.23.1440.830" timestamp="1587651759910" />
-    <state x="1374" y="1613" width="670" height="681" key="search.everywhere.popup/0.23.3440.1417/989.1463.1440.830@989.1463.1440.830" timestamp="1587575631240" />
+    <state x="1374" y="1613" width="670" height="681" key="search.everywhere.popup/0.23.3440.1417/989.1463.1440.830@989.1463.1440.830" timestamp="1587742817614" />
     <state x="1382" y="1613" width="670" height="681" key="search.everywhere.popup/0.23.3440.1417/997.1463.1440.830@997.1463.1440.830" timestamp="1587651381472" />
   </component>
 </project>
