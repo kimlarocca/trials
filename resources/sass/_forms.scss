@@ -49,6 +49,7 @@ fieldset {
 textarea {
     height: 100px;
     border-radius: $border-radius;
+    border: 1px solid $light-gray;
     box-shadow: none;
     padding: 1.5rem;
     transition: $transition;

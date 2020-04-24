@@ -26,6 +26,8 @@ Route::get('/resources', function () {
 Route::get('/contact', function () {
     return view('/contact');
 });
+Route::get('/sendemail', 'SendEmailController@index');
+Route::post('/sendemail/send', 'SendEmailController@send');
 
 Route::get('/privacy', function () {
     return view('/privacy');

@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b38a959b-71a6-4e00-8a74-158fbdc433a6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Screen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Screen.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/SendEmailController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Mail/SendMail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/email-template.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_forms.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +183,7 @@
       <workItem from="1587310349087" duration="3000" />
       <workItem from="1587316897505" duration="27000" />
       <workItem from="1587322176906" duration="15000" />
-      <workItem from="1587562317183" duration="30620000" />
+      <workItem from="1587562317183" duration="33502000" />
     </task>
     <servers />
   </component>
@@ -223,11 +232,12 @@
       <screen x="0" y="23" width="1440" height="830" />
     </state>
     <state x="868" y="357" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.830@0.23.1440.830" timestamp="1586545819214" />
-    <state x="376" y="177" width="687" height="522" key="find.popup" timestamp="1586390331005">
-      <screen x="0" y="23" width="1440" height="830" />
+    <state x="1365" y="1617" width="687" height="522" key="find.popup" timestamp="1587742310894">
+      <screen x="989" y="1463" width="1440" height="830" />
     </state>
     <state x="376" y="176" width="687" height="518" key="find.popup/0.23.1440.825@0.23.1440.825" timestamp="1579734951464" />
     <state x="376" y="177" width="687" height="522" key="find.popup/0.23.1440.830@0.23.1440.830" timestamp="1586390331005" />
+    <state x="1365" y="1617" width="687" height="522" key="find.popup/0.23.3440.1417/989.1463.1440.830@989.1463.1440.830" timestamp="1587742310894" />
     <state x="385" y="173" width="670" height="681" key="search.everywhere.popup" timestamp="1587651759910">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
