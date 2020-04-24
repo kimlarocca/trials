@@ -2,34 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b38a959b-71a6-4e00-8a74-158fbdc433a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/sass/_animations.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/_transitions.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Nav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_forms.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/pages/_login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/pages/_login.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/pages/_styleguide.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/pages/_styleguide.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/screen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/screen.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/style-guide.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/style-guide.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/template.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/test.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Screen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Screen.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +174,7 @@
       <workItem from="1587310349087" duration="3000" />
       <workItem from="1587316897505" duration="27000" />
       <workItem from="1587322176906" duration="15000" />
-      <workItem from="1587562317183" duration="30321000" />
+      <workItem from="1587562317183" duration="30620000" />
     </task>
     <servers />
   </component>

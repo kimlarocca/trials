@@ -171,6 +171,7 @@
             }
         },
         mounted () {
+            console.log('kim')
             if (this.nct) {
                 axios.get('https://clinicaltrials.gov/api/query/full_studies?expr=' + this.nct + '&max_rnk=1&fmt=JSON')
                     .then(response => {
