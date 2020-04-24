@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b38a959b-71a6-4e00-8a74-158fbdc433a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Screen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Screen.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/pages/_screen.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/pages/pages.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/pages/pages.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +179,7 @@
       <workItem from="1587310349087" duration="3000" />
       <workItem from="1587316897505" duration="27000" />
       <workItem from="1587322176906" duration="15000" />
-      <workItem from="1587562317183" duration="26919000" />
+      <workItem from="1587562317183" duration="29107000" />
     </task>
     <servers />
   </component>
@@ -190,11 +195,11 @@
     </state>
     <state x="408" y="170" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.825@0.23.1440.825" timestamp="1579712227304" />
     <state x="648" y="1251" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/240.1103.1440.830/0.23.1920.1057@240.1103.1440.830" timestamp="1586202557634" />
-    <state x="458" y="190" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587167238670">
+    <state x="458" y="190" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587686381067">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
     <state x="458" y="189" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.825@0.23.1440.825" timestamp="1579797381433" />
-    <state x="458" y="190" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.830@0.23.1440.830" timestamp="1587167238670" />
+    <state x="458" y="190" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.830@0.23.1440.830" timestamp="1587686381067" />
     <state width="1398" height="449" key="GridCell.Tab.0.bottom" timestamp="1586046622544">
       <screen x="0" y="23" width="1440" height="830" />
     </state>

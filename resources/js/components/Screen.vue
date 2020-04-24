@@ -21,12 +21,14 @@
                             <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
                         </ul>
                     </template>
+                    <p class="padding-vertical-3"><em>* screening online does not guarantee entry into a clinical
+                        trial</em></p>
                 </div>
             </div>
         </div>
-        <div class="cell medium-12 large-8 bg-tertiary border-radius padding-2">
+        <div class="cell medium-12 large-8 form-container">
             <transition name="fade">
-                <div v-show="currentStep===1" class="form-container">
+                <div v-show="currentStep===1" class="bg-tertiary border-radius padding-2 form">
                     <h2 class="margin-bottom-2">Basic Information:</h2>
                     <div class="grid-x grid-margin-x grid-margin-y">
                         <div class="cell medium-4">
@@ -87,7 +89,7 @@
                 </div>
             </transition>
             <transition name="fade">
-                <div v-show="currentStep===2" class="form-container">
+                <div v-show="currentStep===2" class="bg-tertiary border-radius padding-2 form">
                     <h2 class="margin-bottom-2">Trial Specific Questions:</h2>
                     <div class="grid-x grid-margin-x grid-margin-y">
                         <div class="cell medium-12">
@@ -111,7 +113,7 @@
                 </div>
             </transition>
             <transition name="fade">
-                <div v-show="currentStep===3" class="form-container">
+                <div v-show="currentStep===3" class="bg-tertiary border-radius padding-2 form">
                     <h2 class="margin-bottom-2">Contact Information:</h2>
                     <form method="POST" action="/register">
                         <div class="grid-x grid-margin-x grid-margin-y">
@@ -119,7 +121,8 @@
                                 <label for="name">Your Name:</label> <input type="text" id="name">
                             </div>
                             <div class="cell medium-12">
-                                <label for="patientname">Patient's Name (if you are filling this out on behalf of someone else):</label> <input type="text" id="patientname">
+                                <label for="patientname">Patient's Name (if you are filling this out on behalf of
+                                    someone else):</label> <input type="text" id="patientname">
                             </div>
                             <div class="cell large-6 medium-12">
                                 <label for="email">Email Address:</label> <input type="email" id="email">
@@ -146,9 +149,6 @@
                 </div>
             </transition>
         </div>
-        <div class="cell medium-12 large-12">
-            <p class="text-center padding-vertical-3"><em>* screening online does not guarantee entry into a clinical trial</em></p>
-        </div>
     </div>
 </template>
 
@@ -165,17 +165,22 @@
             }
         },
         props: {
-            nct: String
+            nct: {
+                type: String,
+                default: null
+            }
         },
         mounted () {
-            axios.get('https://clinicaltrials.gov/api/query/full_studies?expr=' + this.nct + '&max_rnk=1&fmt=JSON')
-                .then(response => {
-                    this.trialsFound = response.data.FullStudiesResponse.NStudiesFound,
-                    this.trialData = response.data.FullStudiesResponse.FullStudies[0].Study.ProtocolSection.IdentificationModule
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
+            if (this.nct) {
+                axios.get('https://clinicaltrials.gov/api/query/full_studies?expr=' + this.nct + '&max_rnk=1&fmt=JSON')
+                    .then(response => {
+                        this.trialsFound = response.data.FullStudiesResponse.NStudiesFound,
+                            this.trialData = response.data.FullStudiesResponse.FullStudies[0].Study.ProtocolSection.IdentificationModule
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            }
         },
         methods: {
             goAhead () {
@@ -195,3 +200,95 @@
         }
     }
 </script>
+
+<style lang="scss">
+    @import "resources/sass/variables";
+
+    .screen {
+        position: relative;
+        background: url("/images/screen-hero.png") no-repeat top left;
+
+        // form
+
+        input,
+        textarea {
+            border: 1px solid transparent;
+            margin: 0;
+        }
+
+        //vertical stepper
+
+        $background: $white;
+        $color: $black;
+        $current: $secondary;
+        $done: $primary;
+        $inactive: $light-gray;
+        $icon-size: 2rem;
+
+        .stepper {
+            position: relative;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            &::before {
+                display: inline-block;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: $icon-size/2;
+                width: 1px;
+                height: 100%;
+                border-left: 1px solid $inactive;
+            }
+
+            li {
+                position: relative;
+                counter-increment: list;
+                padding-left: $icon-size + 1rem;
+                line-height: $icon-size;
+                color: $inactive;
+
+                &:not(:last-child) {
+                    padding-bottom: 20px;
+                }
+
+                &::after {
+                    display: inline-block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    content: "\f192";
+                    font-family: $font-awesome;
+                    font-weight: 900;
+                    font-size: 2rem;
+                    color: $inactive;
+                    text-align: center;
+                    background: $background;
+                }
+
+                &.done {
+                    color: $color;
+
+                    &::after {
+                        content: "\f058";
+                        color: $done;
+                    }
+                }
+
+                &.current {
+                    font-weight: 700;
+                    color: $color;
+
+                    &::after {
+                        color: $current;
+                    }
+                }
+            }
+        }
+
+        .cell {
+            position: relative;
+        }
+    }
+</style>
