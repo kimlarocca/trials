@@ -1,8 +1,8 @@
 @extends('layouts/main', ['bodyClass' => 'template'])
 
-@section('title', 'template')
-@section('description', 'template')
-@section('keywords', 'template')
+@section('title', 'ScreenMe | ')
+@section('description', 'ScreenMe | ')
+@section('keywords', 'ScreenMe | ')
 
 @section('content')
     <div class="container">

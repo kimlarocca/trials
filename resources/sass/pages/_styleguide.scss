@@ -1,16 +1,19 @@
 .style-guide {
-  .box {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-  }
-  .colors {
-    margin-bottom: 30px;
-    .cell {
-      height: 100px;
-      span {
-        padding: 10px;
-        background: white;
-      }
+    .box {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        padding: 2rem;
     }
-  }
+
+    .colors {
+        margin-bottom: 30px;
+
+        .cell {
+            height: 100px;
+
+            span {
+                padding: 10px;
+                background: white;
+            }
+        }
+    }
 }

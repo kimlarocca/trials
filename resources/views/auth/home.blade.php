@@ -1,5 +1,5 @@
 @extends('layouts/main', ['bodyClass' => 'login'])
-@section('title', 'Login')
+@section('title', 'ScreenMe | Login')
 
 @section('content')
 

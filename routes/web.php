@@ -44,10 +44,6 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Route::get('/home', function () {
     return view('auth.home');
 })->middleware('auth');

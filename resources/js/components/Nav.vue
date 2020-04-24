@@ -132,4 +132,7 @@
             }
         }
     }
+    input[type=checkbox] + label {
+        margin-left: 0;
+    }
 </style>

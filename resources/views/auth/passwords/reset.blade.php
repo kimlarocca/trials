@@ -1,9 +1,17 @@
-@extends('layouts.app', ['mainClass' => 'login'])
-@section('title', '4 Site | Reset Password')
+@extends('layouts/main', ['bodyClass' => 'login'])
+@section('title', 'ScreenMe | Reset Password')
 
 @section('content')
+
+    @include('partials._header')
+
+    <section class="container">
+        <div class="grid-x grid-margin-x grid-margin-y hero">
+            <div class="cell medium-12 large-4 padding-top-3">
+            </div>
+            <div class="cell medium-12 large-8 bg-light-gray border-radius padding-2">
     <div class="content">
-        <h1>Reset Password</h1>
+        <h1 class="like-h2">Reset Password</h1>
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
@@ -13,7 +21,7 @@
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                    <input id="email" type="email" class="small-input form-control @error('email') is-invalid @enderror"
                            name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                     @error('email')
@@ -57,5 +65,8 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div></div></div>
+    </section>
+
+    @include('partials._footer')
 @endsection

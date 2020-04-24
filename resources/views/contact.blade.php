@@ -1,8 +1,8 @@
 @extends('layouts/main', ['bodyClass' => 'home contact'])
 
-@section('title', 'ScreenMe | About The Clinical Trial Process')
-@section('description', 'ScreenMe | About The Clinical Trial Process')
-@section('keywords', 'ScreenMe | About The Clinical Trial Process')
+@section('title', 'ScreenMe | Contact Us')
+@section('description', 'ScreenMe | Contact Us')
+@section('keywords', 'ScreenMe | Contact Us')
 
 @section('content')
 

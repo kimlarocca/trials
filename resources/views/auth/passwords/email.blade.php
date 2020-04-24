@@ -1,9 +1,17 @@
-@extends('layouts.app', ['mainClass' => 'login'])
-@section('title', '4 Site | Reset Password')
+@extends('layouts/main', ['bodyClass' => 'login'])
+@section('title', 'ScreenMe | Reset Password')
 
 @section('content')
+
+    @include('partials._header')
+
+    <section class="container">
+        <div class="grid-x grid-margin-x grid-margin-y hero">
+            <div class="cell medium-12 large-4 padding-top-3">
+            </div>
+            <div class="cell medium-12 large-8 bg-light-gray border-radius padding-2">
     <div class="content">
-        <h1>Reset Password</h1>
+        <h1 class="like-h2">Reset Password</h1>
         @if (session('status'))
             <div class="alert alert-success margin-bottom-1" role="alert">
                 {{ session('status') }}
@@ -25,5 +33,8 @@
                 {{ __('Send Password Reset Link') }}
             </button>
         </form>
-    </div>
+    </div></div></div>
+    </section>
+
+    @include('partials._footer')
 @endsection

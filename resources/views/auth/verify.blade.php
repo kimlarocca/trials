@@ -1,5 +1,5 @@
 @extends('layouts.app', ['mainClass' => 'login'])
-@section('title', '4 Site | Login')
+@section('title', 'ScreenMe | Login')
 
 @section('content')
 <div class="container">

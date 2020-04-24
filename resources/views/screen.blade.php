@@ -1,8 +1,8 @@
 @extends('layouts/main', ['bodyClass' => 'screen'])
 
-@section('title', 'Patient Screening')
-@section('description', 'Patient Screening')
-@section('keywords', 'Patient Screening')
+@section('title', 'ScreenMe | Patient Screening')
+@section('description', 'ScreenMe | Patient Screening')
+@section('keywords', 'ScreenMe | Patient Screening')
 
 @section('content')
 

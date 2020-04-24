@@ -1,9 +1,17 @@
-@extends('layouts.app', ['mainClass' => 'login'])
-@section('title', '4 Site | Confirm Password')
+@extends('layouts/main', ['bodyClass' => 'login'])
+@section('title', 'ScreenMe | Confirm Password')
 
 @section('content')
+
+    @include('partials._header')
+
+    <section class="container">
+        <div class="grid-x grid-margin-x grid-margin-y hero">
+            <div class="cell medium-12 large-4 padding-top-3">
+            </div>
+            <div class="cell medium-12 large-8 bg-light-gray border-radius padding-2">
     <div class="content">
-        <h1>Confirm Password</h1>
+        <h1 class="like-h2">Confirm Password</h1>
         {{ __('Please confirm your password before continuing.') }}
 
         <form method="POST" action="{{ route('password.confirm') }}">
@@ -38,5 +46,8 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div></div></div>
+    </section>
+
+    @include('partials._footer')
 @endsection
