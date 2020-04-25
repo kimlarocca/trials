@@ -54,6 +54,10 @@ Route::get('/dashboard', function () {
     return view('auth.dashboard');
 })->middleware('auth');
 
+Route::get('/trial/{id}', function () {
+    return view('auth.trial');
+})->middleware('auth');
+
 Route::get('/admin', function () {
     return view('auth.admin');
 })->middleware('auth');

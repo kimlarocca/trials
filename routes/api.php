@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('questions', 'QuestionsController@index');
 Route::get('questions/{question}', 'QuestionsController@show');
+Route::get('trial-questions/{question}', 'QuestionsController@questions');
 Route::post('questions', 'QuestionsController@store');
 Route::put('questions/{question}', 'QuestionsController@update');
 Route::delete('questions/{question}', 'QuestionsController@delete');

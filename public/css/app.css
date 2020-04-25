@@ -10888,7 +10888,7 @@ fieldset label:hover {
 }
 
 .home:before {
-  content: "Screen Me";
+  content: "ScreenMe";
   position: absolute;
   width: 10000px;
   top: 50px;
@@ -11041,7 +11041,7 @@ a:active {
   text-decoration: none;
   -webkit-transition: 0.2s all linear;
   transition: 0.2s all linear;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.125rem;
   border-bottom: solid 1px transparent;
 }
 
@@ -11074,6 +11074,19 @@ a:active.learn-more:after {
   font-weight: 900;
   content: "\F061";
   margin-left: 0.5rem;
+}
+
+a.no-underline,
+a:visited.no-underline,
+a:active.no-underline {
+  text-decoration: none;
+}
+
+a.no-underline:hover,
+a:visited.no-underline:hover,
+a:active.no-underline:hover {
+  text-decoration: none;
+  border-bottom: none;
 }
 
 .caret-right {
@@ -11110,6 +11123,10 @@ hr {
   hr {
     margin: 1rem 0;
   }
+}
+
+hr.white {
+  border-top: 2px dashed #fff;
 }
 
 .container,

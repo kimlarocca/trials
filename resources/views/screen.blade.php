@@ -9,7 +9,7 @@
     @include('partials._header')
 
     <section class="container">
-        <screen nct="{{ Request::route('id') }}"/>
+        <screen ncit="{{ Request::route('id') }}"/>
     </section>
 
     @include('partials._footer')

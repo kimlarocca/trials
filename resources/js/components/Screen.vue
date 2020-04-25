@@ -5,149 +5,152 @@
             <h1 class="margin-bottom-2">Patient Screening</h1>
             <div class="bg-white border-radius padding-2">
                 <div class="basic-trial-info">
-                    <template v-if="trialsFound > 0">
-                        <p class="strong">{{ trialData.BriefTitle }}</p>
-                        <p class="margin-bottom-2 em">NCIT Number: <a :href="'https://clinicaltrials.gov/ct2/show/'+nct"
-                                                                      target="_blank">{{nct}}</a></p>
-                        <ul class="stepper">
-                            <li :class="currentStep===1 ? 'current' : ''">Basic Questions</li>
-                            <li :class="currentStep===2 ? 'current' : ''">Trial Specific Questions</li>
-                            <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
-                        </ul>
-                    </template>
-                    <template v-else>
-                        <ul class="stepper">
-                            <li :class="currentStep===1 ? 'current' : ''">Basic Questions</li>
-                            <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
-                        </ul>
-                    </template>
+                    <p v-if="trialsFound > 0" class="strong">{{ trialData.BriefTitle }}</p>
+                    <p v-if="ncit" class="margin-bottom-2 em">NCIT Number: <a
+                        :href="'https://clinicaltrials.gov/ct2/show/'+ncit"
+                        target="_blank">{{ncit}}</a></p>
+                    <ul class="stepper">
+                        <li :class="currentStep===1 ? 'current' : ''">Basic Questions</li>
+                        <li v-if="questions" :class="currentStep===2 ? 'current' : ''">Trial Specific Questions</li>
+                        <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
+                    </ul>
                     <p class="padding-vertical-3"><em>* screening online does not guarantee entry into a clinical
                         trial</em></p>
                 </div>
             </div>
         </div>
         <div class="cell medium-12 large-8 form-container">
-            <transition name="fade">
-                <div v-show="currentStep===1" class="bg-tertiary border-radius padding-2 form">
-                    <h2 class="margin-bottom-2">Basic Information:</h2>
-                    <div class="grid-x grid-margin-x grid-margin-y">
-                        <div class="cell medium-4">
-                            <p>How old are you?</p>
-                            <input type="number" id="age" min="1" max="120" required>
-                            <label for="age" class="hide-ally-element">Age</label>
-                        </div>
-                        <div class="cell medium-4">
-                            <p>Select your gender:</p>
-                            <fieldset>
-                                <legend class="hide-ally-element">Select your gender:</legend>
-                                <input type="radio" id="gender-male" name="gender" value="male" checked>
-                                <label for="gender-male">Male</label>
-                                <input type="radio" id="gender-female" name="gender" value="female">
-                                <label for="gender-female">Female</label>
-                            </fieldset>
-                        </div>
-                        <div class="cell medium-4">
-                            <p>Are you a smoker?</p>
-                            <fieldset>
-                                <legend class="hide-ally-element">Are you a smoker?</legend>
-                                <input type="radio" id="smoker-yes" name="smoker" value="yes">
-                                <label for="smoker-yes">Yes</label>
-                                <input type="radio" id="smoker-no" name="smoker" value="no" checked>
-                                <label for="smoker-no">No</label>
-                            </fieldset>
-                        </div>
-                        <div class="cell medium-4">
-                            <p>What's your zip code?</p>
-                            <label for="zip" class="hide-ally-element">enter your zip code</label>
-                            <input type="number" id="zip" min="11111" max="99999" required>
-                        </div>
-                        <div class="cell medium-8">
-                            <p>How far are you willing to travel?</p>
-                            <fieldset>
-                                <legend class="hide-ally-element">How far are you willing to travel?</legend>
-                                <input type="radio" id="distance-20" name="distance" value="20" checked>
-                                <label for="distance-20">20 Miles</label>
-                                <input type="radio" id="distance-50" name="distance" value="50">
-                                <label for="distance-50">50 Miles</label>
-                                <input type="radio" id="distance-100" name="distance" value="100">
-                                <label for="distance-100">100 Miles</label>
-                                <input type="radio" id="distance-any" name="distance" value="any">
-                                <label for="distance-any">Any</label>
-                            </fieldset>
-                        </div>
-                        <div class="cell medium-12">
-                            <p>Do you have any underlying conditions?</p>
-                            <label for="underlying-conditions" class="hide-ally-element">Do you have any underlying
-                                conditions?</label>
-                            <textarea id="underlying-conditions"
-                                      placeholder="heart issues, cancer, diabetes, etc."></textarea>
-                        </div>
-                        <div class="cell medium-12">
-                            <a class="button" tabindex="0" @click="goAhead">continue</a>
-                        </div>
-                    </div>
-                </div>
-            </transition>
-            <transition name="fade">
-                <div v-show="currentStep===2" class="bg-tertiary border-radius padding-2 form">
-                    <h2 class="margin-bottom-2">Trial Specific Questions:</h2>
-                    <div class="grid-x grid-margin-x grid-margin-y">
-                        <div class="cell medium-12">
-                            <label for="custom1">Custom question one:</label> <input type="number" id="custom1">
-                        </div>
-                        <div class="cell medium-12">
-                            <label for="custom2">Custom question two:</label>
-                            <textarea id="custom2"></textarea>
-                        </div>
-                        <div class="cell medium-12">
-                            <label for="custom3">Custom question three:</label> <input type="number" id="custom3">
-                        </div>
-                        <div class="cell medium-12">
-                            <label for="custom4">Custom question four:</label> <input type="number" id="custom4">
-                        </div>
-                        <div class="cell medium-12">
-                            <a class="button" tabindex="0" @click="goBack">go back</a>
-                            <a class="button" tabindex="0" @click="goAhead">continue</a>
-                        </div>
-                    </div>
-                </div>
-            </transition>
-            <transition name="fade">
-                <div v-show="currentStep===3" class="bg-tertiary border-radius padding-2 form">
-                    <h2 class="margin-bottom-2">Contact Information:</h2>
-                    <form method="POST" action="/register">
+            <form @submit.prevent="submitForm">
+                <transition name="fade">
+                    <div v-show="currentStep===1" class="bg-tertiary border-radius padding-2 form">
+                        <h2 class="margin-bottom-2">Basic Information:</h2>
                         <div class="grid-x grid-margin-x grid-margin-y">
-                            <div class="cell medium-12">
-                                <label for="name">Your Name:</label> <input type="text" id="name">
+                            <div class="cell medium-4">
+                                <p>How old are you?</p>
+                                <input type="number" id="age" min="1" max="120" required>
+                                <label for="age" class="hide-ally-element">Age</label>
                             </div>
-                            <div class="cell medium-12">
-                                <label for="patientname">Patient's Name (if you are filling this out on behalf of
-                                    someone else):</label> <input type="text" id="patientname">
-                            </div>
-                            <div class="cell large-6 medium-12">
-                                <label for="email">Email Address:</label> <input type="email" id="email">
-                            </div>
-                            <div class="cell large-6 medium-12">
-                                <label for="phone">Phone Number:</label> <input type="number" id="phone">
-                            </div>
-                            <div class="cell large-12 medium-12">
-                                <p>Do you want to sign up for clinical trial alerts?</p>
+                            <div class="cell medium-4">
+                                <p>Select your gender:</p>
                                 <fieldset>
-                                    <legend class="hide-ally-element">Sign up for clinical trial alerts:</legend>
-                                    <input type="radio" id="subscribe-yes" name="subscribe" value="1" checked>
-                                    <label for="subscribe-yes">Yes</label>
-                                    <input type="radio" id="subscribe-no" name="subscribe" value="0">
-                                    <label for="subscribe-no">No</label>
+                                    <legend class="hide-ally-element">Select your gender:</legend>
+                                    <input type="radio" id="gender-male" name="gender" value="male" checked>
+                                    <label for="gender-male">Male</label>
+                                    <input type="radio" id="gender-female" name="gender" value="female">
+                                    <label for="gender-female">Female</label>
                                 </fieldset>
                             </div>
-                            <div class="cell large-12 medium-12">
-                                <a class="button" tabindex="0" @click="goBack">go back</a>
-                                <a class="button" tabindex="0">save & submit</a>
+                            <div class="cell medium-4">
+                                <p>Are you a smoker?</p>
+                                <fieldset>
+                                    <legend class="hide-ally-element">Are you a smoker?</legend>
+                                    <input type="radio" id="smoker-yes" name="smoker" value="yes">
+                                    <label for="smoker-yes">Yes</label>
+                                    <input type="radio" id="smoker-no" name="smoker" value="no" checked>
+                                    <label for="smoker-no">No</label>
+                                </fieldset>
+                            </div>
+                            <div class="cell medium-4">
+                                <p>What's your zip code?</p>
+                                <label for="zip" class="hide-ally-element">enter your zip code</label>
+                                <input type="number" id="zip" min="11111" max="99999" required>
+                            </div>
+                            <div class="cell medium-8">
+                                <p>How far are you willing to travel?</p>
+                                <fieldset>
+                                    <legend class="hide-ally-element">How far are you willing to travel?</legend>
+                                    <input type="radio" id="distance-20" name="distance" value="20" checked>
+                                    <label for="distance-20">20 Miles</label>
+                                    <input type="radio" id="distance-50" name="distance" value="50">
+                                    <label for="distance-50">50 Miles</label>
+                                    <input type="radio" id="distance-100" name="distance" value="100">
+                                    <label for="distance-100">100 Miles</label>
+                                    <input type="radio" id="distance-any" name="distance" value="any">
+                                    <label for="distance-any">Any</label>
+                                </fieldset>
+                            </div>
+                            <div class="cell medium-12">
+                                <p>Do you have any underlying conditions?</p>
+                                <label for="underlying-conditions" class="hide-ally-element">Do you have any underlying
+                                    conditions?</label>
+                                <textarea id="underlying-conditions"
+                                          placeholder="heart issues, cancer, diabetes, etc."></textarea>
+                            </div>
+                            <div class="cell medium-12">
+                                <a class="button" tabindex="0" @click="goAhead">continue</a>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </transition>
+                    </div>
+                </transition>
+                <transition name="fade">
+                    <div v-show="currentStep===2" class="bg-tertiary border-radius padding-2 form">
+                        <h2 class="margin-bottom-2">Trial Specific Questions:</h2>
+                        <div class="grid-x grid-margin-x grid-margin-y">
+                            <div class="cell medium-12" v-for="(question, index) in questions" :key="index">
+                                <label>{{question.question}}<br><br>
+                                    <template v-if="question.question_type === 'text'">
+                                        <input type="text" :name="'question'+index" required/>
+                                    </template>
+                                    <template v-if="question.question_type === 'paragraph'">
+                                        <textarea :name="'question'+index" required></textarea>
+                                    </template>
+                                    <template v-if="question.question_type === 'boolean'">
+                                        <fieldset>
+                                            <legend class="hide-ally-element">{{question.question}}</legend>
+                                            <input type="radio" :id="'question'+index+'yes'" :name="'question'+index"
+                                                   value="yes" checked>
+                                            <label :for="'question'+index+'yes'">Yes</label>
+                                            <input type="radio" :id="'question'+index+'no'" :name="'question'+index"
+                                                   value="no">
+                                            <label :for="'question'+index+'no'">No</label>
+                                        </fieldset>
+                                    </template>
+                                </label>
+                            </div>
+                            <div class="cell medium-12">
+                                <a class="button" tabindex="0" @click="goBack">go back</a>
+                                <a class="button" tabindex="0" @click="goAhead">continue</a>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
+                <transition name="fade">
+                    <div v-show="currentStep===3" class="bg-tertiary border-radius padding-2 form">
+                        <h2 class="margin-bottom-2">Contact Information:</h2>
+                        <form method="POST" action="/register">
+                            <div class="grid-x grid-margin-x grid-margin-y">
+                                <div class="cell medium-12">
+                                    <label for="name">Your Name:</label> <input type="text" id="name">
+                                </div>
+                                <div class="cell medium-12">
+                                    <label for="patientname">Patient's Name (if you are filling this out on behalf of
+                                        someone else):</label> <input type="text" id="patientname">
+                                </div>
+                                <div class="cell large-6 medium-12">
+                                    <label for="email">Email Address:</label> <input type="email" id="email">
+                                </div>
+                                <div class="cell large-6 medium-12">
+                                    <label for="phone">Phone Number:</label> <input type="number" id="phone">
+                                </div>
+                                <div class="cell large-12 medium-12">
+                                    <p>Do you want to sign up for clinical trial alerts?</p>
+                                    <fieldset>
+                                        <legend class="hide-ally-element">Sign up for clinical trial alerts:</legend>
+                                        <input type="radio" id="subscribe-yes" name="subscribe" value="1" checked>
+                                        <label for="subscribe-yes">Yes</label>
+                                        <input type="radio" id="subscribe-no" name="subscribe" value="0">
+                                        <label for="subscribe-no">No</label>
+                                    </fieldset>
+                                </div>
+                                <div class="cell large-12 medium-12">
+                                    <a class="button" tabindex="0" @click="goBack">go back</a>
+                                    <a class="button" tabindex="0">save & submit</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </transition>
+            </form>
         </div>
     </div>
 </template>
@@ -156,47 +159,60 @@
     import axios from 'axios'
 
     export default {
-        name: 'BasicTrialInfo',
+        name: 'Screen',
         data () {
             return {
                 trialData: [],
                 currentStep: 1,
-                trialsFound: 0
+                trialsFound: 0,
+                questions: null
             }
         },
         props: {
-            nct: {
+            ncit: {
                 type: String,
                 default: null
             }
         },
         mounted () {
-            console.log('kim')
-            if (this.nct) {
-                axios.get('https://clinicaltrials.gov/api/query/full_studies?expr=' + this.nct + '&max_rnk=1&fmt=JSON')
+            if (this.ncit) {
+                axios.get('https://clinicaltrials.gov/api/query/full_studies?expr=' + this.ncit + '&max_rnk=1&fmt=JSON')
                     .then(response => {
                         this.trialsFound = response.data.FullStudiesResponse.NStudiesFound,
                             this.trialData = response.data.FullStudiesResponse.FullStudies[0].Study.ProtocolSection.IdentificationModule
                     })
                     .catch(function (error) {
                         console.log(error)
-                    })
+                    }),
+                    this.getQuestions()
             }
         },
         methods: {
+            getQuestions () {
+                axios.get('/api/trial-questions/' + this.ncit)
+                    .then(response => (
+                        this.questions = response.data
+                    ))
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
             goAhead () {
-                if (this.currentStep === 1 && this.nct) {
+                if (this.currentStep === 1 && this.questions) {
                     this.currentStep = 2
                 } else {
                     this.currentStep = 3
                 }
             },
             goBack () {
-                if (this.currentStep === 3 && this.nct) {
+                if (this.currentStep === 3 && this.questions) {
                     this.currentStep = 2
                 } else {
                     this.currentStep = 1
                 }
+            },
+            submitForm () {
+                console.log('submit')
             }
         }
     }

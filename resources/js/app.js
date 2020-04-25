@@ -27,6 +27,7 @@ Vue.component('count-up', require('./components/CountUp.vue').default);
 Vue.component('trials', require('./components/Trials.vue').default);
 Vue.component('trial', require('./components/Trial.vue').default);
 Vue.component('trial-list', require('./components/TrialList.vue').default);
+Vue.component('trial-manager', require('./components/TrialManager.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

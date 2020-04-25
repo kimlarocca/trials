@@ -2185,18 +2185,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'BasicTrialInfo',
+  name: 'Screen',
   data: function data() {
     return {
       trialData: [],
       currentStep: 1,
-      trialsFound: 0
+      trialsFound: 0,
+      questions: null
     };
   },
   props: {
-    nct: {
+    ncit: {
       type: String,
       "default": null
     }
@@ -2204,30 +2208,40 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log('kim');
-
-    if (this.nct) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://clinicaltrials.gov/api/query/full_studies?expr=' + this.nct + '&max_rnk=1&fmt=JSON').then(function (response) {
+    if (this.ncit) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://clinicaltrials.gov/api/query/full_studies?expr=' + this.ncit + '&max_rnk=1&fmt=JSON').then(function (response) {
         _this.trialsFound = response.data.FullStudiesResponse.NStudiesFound, _this.trialData = response.data.FullStudiesResponse.FullStudies[0].Study.ProtocolSection.IdentificationModule;
       })["catch"](function (error) {
         console.log(error);
-      });
+      }), this.getQuestions();
     }
   },
   methods: {
+    getQuestions: function getQuestions() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/trial-questions/' + this.ncit).then(function (response) {
+        return _this2.questions = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     goAhead: function goAhead() {
-      if (this.currentStep === 1 && this.nct) {
+      if (this.currentStep === 1 && this.questions) {
         this.currentStep = 2;
       } else {
         this.currentStep = 3;
       }
     },
     goBack: function goBack() {
-      if (this.currentStep === 3 && this.nct) {
+      if (this.currentStep === 3 && this.questions) {
         this.currentStep = 2;
       } else {
         this.currentStep = 1;
       }
+    },
+    submitForm: function submitForm() {
+      console.log('submit');
     }
   }
 });
@@ -2278,6 +2292,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     ncit: String,
+    id: Number,
     title: String,
     showDetails: {
       type: Boolean,
@@ -2384,6 +2399,122 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/api/trials/' + trial.id).then( //remove from myTrials array
       this.myTrials = this.myTrials.filter(function (item) {
         return item !== trial;
+      }))["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TrialManager.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TrialManager.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'TrialManager',
+  data: function data() {
+    return {
+      trialData: [],
+      questions: [],
+      componentMounted: false,
+      showAddQuestionForm: false,
+      question: '',
+      questionType: ''
+    };
+  },
+  props: {
+    id: String
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/trials/' + this.id).then(function (response) {
+      return _this.trialData = response.data, _this.componentMounted = true, _this.getQuestions();
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  },
+  methods: {
+    getQuestions: function getQuestions() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/trial-questions/' + this.trialData.ncit).then(function (response) {
+        return _this2.questions = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    addQuestion: function addQuestion() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/questions', {
+        ncit: this.trialData.ncit,
+        question: this.question,
+        question_type: this.questionType
+      }).then(function (response) {
+        return console.log('added ' + response), _this3.getQuestions(), _this3.showAddQuestionForm = false, _this3.question = '', _this3.questionType = '';
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    deleteQuestion: function deleteQuestion(question) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/api/questions/' + question.id).then( //remove from questions array
+      this.questions = this.questions.filter(function (item) {
+        return item !== question;
       }))["catch"](function (error) {
         console.log(error);
       });
@@ -7125,6 +7256,25 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Po
 
 // module
 exports.push([module.i, ".trial {\n  width: 100%;\n}\n.trial i {\n  font-size: 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 0.2s all linear;\n  transition: 0.2s all linear;\n}\n.trial i:hover {\n  color: #ff7575;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".trial-details .question {\n  width: 100%;\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n}", ""]);
 
 // exports
 
@@ -38391,6 +38541,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./TrialManager.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -39162,493 +39342,427 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "bg-white border-radius padding-2" }, [
-        _c(
-          "div",
-          { staticClass: "basic-trial-info" },
-          [
-            _vm.trialsFound > 0
-              ? [
-                  _c("p", { staticClass: "strong" }, [
-                    _vm._v(_vm._s(_vm.trialData.BriefTitle))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "margin-bottom-2 em" }, [
-                    _vm._v("NCIT Number: "),
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          href:
-                            "https://clinicaltrials.gov/ct2/show/" + _vm.nct,
-                          target: "_blank"
-                        }
-                      },
-                      [_vm._v(_vm._s(_vm.nct))]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "stepper" }, [
-                    _c(
-                      "li",
-                      { class: _vm.currentStep === 1 ? "current" : "" },
-                      [_vm._v("Basic Questions")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { class: _vm.currentStep === 2 ? "current" : "" },
-                      [_vm._v("Trial Specific Questions")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { class: _vm.currentStep === 3 ? "current" : "" },
-                      [_vm._v("Contact Information")]
-                    )
-                  ])
-                ]
-              : [
-                  _c("ul", { staticClass: "stepper" }, [
-                    _c(
-                      "li",
-                      { class: _vm.currentStep === 1 ? "current" : "" },
-                      [_vm._v("Basic Questions")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { class: _vm.currentStep === 3 ? "current" : "" },
-                      [_vm._v("Contact Information")]
-                    )
-                  ])
-                ],
+        _c("div", { staticClass: "basic-trial-info" }, [
+          _vm.trialsFound > 0
+            ? _c("p", { staticClass: "strong" }, [
+                _vm._v(_vm._s(_vm.trialData.BriefTitle))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.ncit
+            ? _c("p", { staticClass: "margin-bottom-2 em" }, [
+                _vm._v("NCIT Number: "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "https://clinicaltrials.gov/ct2/show/" + _vm.ncit,
+                      target: "_blank"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.ncit))]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("ul", { staticClass: "stepper" }, [
+            _c("li", { class: _vm.currentStep === 1 ? "current" : "" }, [
+              _vm._v("Basic Questions")
+            ]),
             _vm._v(" "),
-            _vm._m(0)
-          ],
-          2
-        )
+            _vm.questions
+              ? _c("li", { class: _vm.currentStep === 2 ? "current" : "" }, [
+                  _vm._v("Trial Specific Questions")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("li", { class: _vm.currentStep === 3 ? "current" : "" }, [
+              _vm._v("Contact Information")
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
       ])
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "cell medium-12 large-8 form-container" },
-      [
-        _c("transition", { attrs: { name: "fade" } }, [
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.currentStep === 1,
-                  expression: "currentStep===1"
-                }
-              ],
-              staticClass: "bg-tertiary border-radius padding-2 form"
-            },
-            [
-              _c("h2", { staticClass: "margin-bottom-2" }, [
-                _vm._v("Basic Information:")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "grid-x grid-margin-x grid-margin-y" }, [
-                _c("div", { staticClass: "cell medium-4" }, [
-                  _c("p", [_vm._v("How old are you?")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: {
-                      type: "number",
-                      id: "age",
-                      min: "1",
-                      max: "120",
-                      required: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    { staticClass: "hide-ally-element", attrs: { for: "age" } },
-                    [_vm._v("Age")]
-                  )
+    _c("div", { staticClass: "cell medium-12 large-8 form-container" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submitForm($event)
+            }
+          }
+        },
+        [
+          _c("transition", { attrs: { name: "fade" } }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.currentStep === 1,
+                    expression: "currentStep===1"
+                  }
+                ],
+                staticClass: "bg-tertiary border-radius padding-2 form"
+              },
+              [
+                _c("h2", { staticClass: "margin-bottom-2" }, [
+                  _vm._v("Basic Information:")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "cell medium-4" }, [
-                  _c("p", [_vm._v("Select your gender:")]),
-                  _vm._v(" "),
-                  _c("fieldset", [
-                    _c("legend", { staticClass: "hide-ally-element" }, [
-                      _vm._v("Select your gender:")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "radio",
-                        id: "gender-male",
-                        name: "gender",
-                        value: "male",
-                        checked: ""
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "gender-male" } }, [
-                      _vm._v("Male")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "radio",
-                        id: "gender-female",
-                        name: "gender",
-                        value: "female"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "gender-female" } }, [
-                      _vm._v("Female")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-4" }, [
-                  _c("p", [_vm._v("Are you a smoker?")]),
-                  _vm._v(" "),
-                  _c("fieldset", [
-                    _c("legend", { staticClass: "hide-ally-element" }, [
-                      _vm._v("Are you a smoker?")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "radio",
-                        id: "smoker-yes",
-                        name: "smoker",
-                        value: "yes"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "smoker-yes" } }, [
-                      _vm._v("Yes")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "radio",
-                        id: "smoker-no",
-                        name: "smoker",
-                        value: "no",
-                        checked: ""
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "smoker-no" } }, [_vm._v("No")])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-4" }, [
-                  _c("p", [_vm._v("What's your zip code?")]),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    { staticClass: "hide-ally-element", attrs: { for: "zip" } },
-                    [_vm._v("enter your zip code")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: {
-                      type: "number",
-                      id: "zip",
-                      min: "11111",
-                      max: "99999",
-                      required: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-8" }, [
-                  _c("p", [_vm._v("How far are you willing to travel?")]),
-                  _vm._v(" "),
-                  _c("fieldset", [
-                    _c("legend", { staticClass: "hide-ally-element" }, [
-                      _vm._v("How far are you willing to travel?")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "radio",
-                        id: "distance-20",
-                        name: "distance",
-                        value: "20",
-                        checked: ""
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "distance-20" } }, [
-                      _vm._v("20 Miles")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "radio",
-                        id: "distance-50",
-                        name: "distance",
-                        value: "50"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "distance-50" } }, [
-                      _vm._v("50 Miles")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "radio",
-                        id: "distance-100",
-                        name: "distance",
-                        value: "100"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "distance-100" } }, [
-                      _vm._v("100 Miles")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "radio",
-                        id: "distance-any",
-                        name: "distance",
-                        value: "any"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "distance-any" } }, [
-                      _vm._v("Any")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-12" }, [
-                  _c("p", [_vm._v("Do you have any underlying conditions?")]),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "hide-ally-element",
-                      attrs: { for: "underlying-conditions" }
-                    },
-                    [
-                      _vm._v(
-                        "Do you have any underlying\n                            conditions?"
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    attrs: {
-                      id: "underlying-conditions",
-                      placeholder: "heart issues, cancer, diabetes, etc."
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-12" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "button",
-                      attrs: { tabindex: "0" },
-                      on: { click: _vm.goAhead }
-                    },
-                    [_vm._v("continue")]
-                  )
-                ])
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("transition", { attrs: { name: "fade" } }, [
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.currentStep === 2,
-                  expression: "currentStep===2"
-                }
-              ],
-              staticClass: "bg-tertiary border-radius padding-2 form"
-            },
-            [
-              _c("h2", { staticClass: "margin-bottom-2" }, [
-                _vm._v("Trial Specific Questions:")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "grid-x grid-margin-x grid-margin-y" }, [
-                _c("div", { staticClass: "cell medium-12" }, [
-                  _c("label", { attrs: { for: "custom1" } }, [
-                    _vm._v("Custom question one:")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", { attrs: { type: "number", id: "custom1" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-12" }, [
-                  _c("label", { attrs: { for: "custom2" } }, [
-                    _vm._v("Custom question two:")
-                  ]),
-                  _vm._v(" "),
-                  _c("textarea", { attrs: { id: "custom2" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-12" }, [
-                  _c("label", { attrs: { for: "custom3" } }, [
-                    _vm._v("Custom question three:")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", { attrs: { type: "number", id: "custom3" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-12" }, [
-                  _c("label", { attrs: { for: "custom4" } }, [
-                    _vm._v("Custom question four:")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", { attrs: { type: "number", id: "custom4" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell medium-12" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "button",
-                      attrs: { tabindex: "0" },
-                      on: { click: _vm.goBack }
-                    },
-                    [_vm._v("go back")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "button",
-                      attrs: { tabindex: "0" },
-                      on: { click: _vm.goAhead }
-                    },
-                    [_vm._v("continue")]
-                  )
-                ])
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("transition", { attrs: { name: "fade" } }, [
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.currentStep === 3,
-                  expression: "currentStep===3"
-                }
-              ],
-              staticClass: "bg-tertiary border-radius padding-2 form"
-            },
-            [
-              _c("h2", { staticClass: "margin-bottom-2" }, [
-                _vm._v("Contact Information:")
-              ]),
-              _vm._v(" "),
-              _c("form", { attrs: { method: "POST", action: "/register" } }, [
                 _c(
                   "div",
                   { staticClass: "grid-x grid-margin-x grid-margin-y" },
                   [
-                    _c("div", { staticClass: "cell medium-12" }, [
-                      _c("label", { attrs: { for: "name" } }, [
-                        _vm._v("Your Name:")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", { attrs: { type: "text", id: "name" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell medium-12" }, [
-                      _c("label", { attrs: { for: "patientname" } }, [
-                        _vm._v(
-                          "Patient's Name (if you are filling this out on behalf of\n                                someone else):"
-                        )
-                      ]),
+                    _c("div", { staticClass: "cell medium-4" }, [
+                      _c("p", [_vm._v("How old are you?")]),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: { type: "text", id: "patientname" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell large-6 medium-12" }, [
-                      _c("label", { attrs: { for: "email" } }, [
-                        _vm._v("Email Address:")
-                      ]),
+                        attrs: {
+                          type: "number",
+                          id: "age",
+                          min: "1",
+                          max: "120",
+                          required: ""
+                        }
+                      }),
                       _vm._v(" "),
-                      _c("input", { attrs: { type: "email", id: "email" } })
+                      _c(
+                        "label",
+                        {
+                          staticClass: "hide-ally-element",
+                          attrs: { for: "age" }
+                        },
+                        [_vm._v("Age")]
+                      )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "cell large-6 medium-12" }, [
-                      _c("label", { attrs: { for: "phone" } }, [
-                        _vm._v("Phone Number:")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", { attrs: { type: "number", id: "phone" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell large-12 medium-12" }, [
-                      _c("p", [
-                        _vm._v(
-                          "Do you want to sign up for clinical trial alerts?"
-                        )
-                      ]),
+                    _c("div", { staticClass: "cell medium-4" }, [
+                      _c("p", [_vm._v("Select your gender:")]),
                       _vm._v(" "),
                       _c("fieldset", [
                         _c("legend", { staticClass: "hide-ally-element" }, [
-                          _vm._v("Sign up for clinical trial alerts:")
+                          _vm._v("Select your gender:")
                         ]),
                         _vm._v(" "),
                         _c("input", {
                           attrs: {
                             type: "radio",
-                            id: "subscribe-yes",
-                            name: "subscribe",
-                            value: "1",
+                            id: "gender-male",
+                            name: "gender",
+                            value: "male",
                             checked: ""
                           }
                         }),
                         _vm._v(" "),
-                        _c("label", { attrs: { for: "subscribe-yes" } }, [
+                        _c("label", { attrs: { for: "gender-male" } }, [
+                          _vm._v("Male")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "radio",
+                            id: "gender-female",
+                            name: "gender",
+                            value: "female"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "gender-female" } }, [
+                          _vm._v("Female")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "cell medium-4" }, [
+                      _c("p", [_vm._v("Are you a smoker?")]),
+                      _vm._v(" "),
+                      _c("fieldset", [
+                        _c("legend", { staticClass: "hide-ally-element" }, [
+                          _vm._v("Are you a smoker?")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "radio",
+                            id: "smoker-yes",
+                            name: "smoker",
+                            value: "yes"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "smoker-yes" } }, [
                           _vm._v("Yes")
                         ]),
                         _vm._v(" "),
                         _c("input", {
                           attrs: {
                             type: "radio",
-                            id: "subscribe-no",
-                            name: "subscribe",
-                            value: "0"
+                            id: "smoker-no",
+                            name: "smoker",
+                            value: "no",
+                            checked: ""
                           }
                         }),
                         _vm._v(" "),
-                        _c("label", { attrs: { for: "subscribe-no" } }, [
+                        _c("label", { attrs: { for: "smoker-no" } }, [
                           _vm._v("No")
                         ])
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "cell large-12 medium-12" }, [
+                    _c("div", { staticClass: "cell medium-4" }, [
+                      _c("p", [_vm._v("What's your zip code?")]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "hide-ally-element",
+                          attrs: { for: "zip" }
+                        },
+                        [_vm._v("enter your zip code")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: {
+                          type: "number",
+                          id: "zip",
+                          min: "11111",
+                          max: "99999",
+                          required: ""
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "cell medium-8" }, [
+                      _c("p", [_vm._v("How far are you willing to travel?")]),
+                      _vm._v(" "),
+                      _c("fieldset", [
+                        _c("legend", { staticClass: "hide-ally-element" }, [
+                          _vm._v("How far are you willing to travel?")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "radio",
+                            id: "distance-20",
+                            name: "distance",
+                            value: "20",
+                            checked: ""
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "distance-20" } }, [
+                          _vm._v("20 Miles")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "radio",
+                            id: "distance-50",
+                            name: "distance",
+                            value: "50"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "distance-50" } }, [
+                          _vm._v("50 Miles")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "radio",
+                            id: "distance-100",
+                            name: "distance",
+                            value: "100"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "distance-100" } }, [
+                          _vm._v("100 Miles")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "radio",
+                            id: "distance-any",
+                            name: "distance",
+                            value: "any"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "distance-any" } }, [
+                          _vm._v("Any")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "cell medium-12" }, [
+                      _c("p", [
+                        _vm._v("Do you have any underlying conditions?")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "hide-ally-element",
+                          attrs: { for: "underlying-conditions" }
+                        },
+                        [
+                          _vm._v(
+                            "Do you have any underlying\n                                conditions?"
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        attrs: {
+                          id: "underlying-conditions",
+                          placeholder: "heart issues, cancer, diabetes, etc."
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "cell medium-12" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button",
+                          attrs: { tabindex: "0" },
+                          on: { click: _vm.goAhead }
+                        },
+                        [_vm._v("continue")]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("transition", { attrs: { name: "fade" } }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.currentStep === 2,
+                    expression: "currentStep===2"
+                  }
+                ],
+                staticClass: "bg-tertiary border-radius padding-2 form"
+              },
+              [
+                _c("h2", { staticClass: "margin-bottom-2" }, [
+                  _vm._v("Trial Specific Questions:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "grid-x grid-margin-x grid-margin-y" },
+                  [
+                    _vm._l(_vm.questions, function(question, index) {
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "cell medium-12" },
+                        [
+                          _c(
+                            "label",
+                            [
+                              _vm._v(_vm._s(question.question)),
+                              _c("br"),
+                              _c("br"),
+                              _vm._v(" "),
+                              question.question_type === "text"
+                                ? [
+                                    _c("input", {
+                                      attrs: {
+                                        type: "text",
+                                        name: "question" + index,
+                                        required: ""
+                                      }
+                                    })
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              question.question_type === "paragraph"
+                                ? [
+                                    _c("textarea", {
+                                      attrs: {
+                                        name: "question" + index,
+                                        required: ""
+                                      }
+                                    })
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              question.question_type === "boolean"
+                                ? [
+                                    _c("fieldset", [
+                                      _c(
+                                        "legend",
+                                        { staticClass: "hide-ally-element" },
+                                        [_vm._v(_vm._s(question.question))]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        attrs: {
+                                          type: "radio",
+                                          id: "question" + index + "yes",
+                                          name: "question" + index,
+                                          value: "yes",
+                                          checked: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "label",
+                                        {
+                                          attrs: {
+                                            for: "question" + index + "yes"
+                                          }
+                                        },
+                                        [_vm._v("Yes")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        attrs: {
+                                          type: "radio",
+                                          id: "question" + index + "no",
+                                          name: "question" + index,
+                                          value: "no"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "label",
+                                        {
+                                          attrs: {
+                                            for: "question" + index + "no"
+                                          }
+                                        },
+                                        [_vm._v("No")]
+                                      )
+                                    ])
+                                  ]
+                                : _vm._e()
+                            ],
+                            2
+                          )
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "cell medium-12" }, [
                       _c(
                         "a",
                         {
@@ -39661,19 +39775,149 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "a",
-                        { staticClass: "button", attrs: { tabindex: "0" } },
-                        [_vm._v("save & submit")]
+                        {
+                          staticClass: "button",
+                          attrs: { tabindex: "0" },
+                          on: { click: _vm.goAhead }
+                        },
+                        [_vm._v("continue")]
                       )
                     ])
-                  ]
+                  ],
+                  2
                 )
-              ])
-            ]
-          )
-        ])
-      ],
-      1
-    )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("transition", { attrs: { name: "fade" } }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.currentStep === 3,
+                    expression: "currentStep===3"
+                  }
+                ],
+                staticClass: "bg-tertiary border-radius padding-2 form"
+              },
+              [
+                _c("h2", { staticClass: "margin-bottom-2" }, [
+                  _vm._v("Contact Information:")
+                ]),
+                _vm._v(" "),
+                _c("form", { attrs: { method: "POST", action: "/register" } }, [
+                  _c(
+                    "div",
+                    { staticClass: "grid-x grid-margin-x grid-margin-y" },
+                    [
+                      _c("div", { staticClass: "cell medium-12" }, [
+                        _c("label", { attrs: { for: "name" } }, [
+                          _vm._v("Your Name:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", { attrs: { type: "text", id: "name" } })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cell medium-12" }, [
+                        _c("label", { attrs: { for: "patientname" } }, [
+                          _vm._v(
+                            "Patient's Name (if you are filling this out on behalf of\n                                    someone else):"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", id: "patientname" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cell large-6 medium-12" }, [
+                        _c("label", { attrs: { for: "email" } }, [
+                          _vm._v("Email Address:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", { attrs: { type: "email", id: "email" } })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cell large-6 medium-12" }, [
+                        _c("label", { attrs: { for: "phone" } }, [
+                          _vm._v("Phone Number:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", { attrs: { type: "number", id: "phone" } })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cell large-12 medium-12" }, [
+                        _c("p", [
+                          _vm._v(
+                            "Do you want to sign up for clinical trial alerts?"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("fieldset", [
+                          _c("legend", { staticClass: "hide-ally-element" }, [
+                            _vm._v("Sign up for clinical trial alerts:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: {
+                              type: "radio",
+                              id: "subscribe-yes",
+                              name: "subscribe",
+                              value: "1",
+                              checked: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "subscribe-yes" } }, [
+                            _vm._v("Yes")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: {
+                              type: "radio",
+                              id: "subscribe-no",
+                              name: "subscribe",
+                              value: "0"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "subscribe-no" } }, [
+                            _vm._v("No")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cell large-12 medium-12" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "button",
+                            attrs: { tabindex: "0" },
+                            on: { click: _vm.goBack }
+                          },
+                          [_vm._v("go back")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          { staticClass: "button", attrs: { tabindex: "0" } },
+                          [_vm._v("save & submit")]
+                        )
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            )
+          ])
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -39767,7 +40011,21 @@ var render = function() {
                         },
                         [
                           _c("i", { staticClass: "fas fa-eye" }),
-                          _vm._v(" view screening link")
+                          _vm._v(" screening link")
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("h6", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "icon-link",
+                          attrs: { href: "/trial/" + _vm.id }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-edit" }),
+                          _vm._v(" manage trial questions")
                         ]
                       )
                     ]),
@@ -39778,18 +40036,7 @@ var render = function() {
                         { staticClass: "icon-link", attrs: { href: "#" } },
                         [
                           _c("i", { staticClass: "fas fa-chart-line" }),
-                          _vm._v(" view screening stats")
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("h6", [
-                      _c(
-                        "a",
-                        { staticClass: "icon-link", attrs: { href: "#" } },
-                        [
-                          _c("i", { staticClass: "fas fa-edit" }),
-                          _vm._v(" Manage Trial-Specific Questions")
+                          _vm._v(" view screening statistics")
                         ]
                       )
                     ])
@@ -39902,6 +40149,233 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TrialManager.vue?vue&type=template&id=4ce95422&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TrialManager.vue?vue&type=template&id=4ce95422& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "trial-details" },
+    [
+      !_vm.componentMounted
+        ? _c("loader")
+        : [
+            _c("h1", [_vm._v(_vm._s(_vm.trialData.title))]),
+            _vm._v(" "),
+            _c("h6", { staticClass: "margin-vertical-2" }, [
+              _vm._v("NCIT: " + _vm._s(_vm.trialData.ncit))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "padding-3 bg-light-gray border-radius" },
+              [
+                _c("h3", [
+                  _vm._v("Questions "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "no-underline",
+                      attrs: { tabindex: "0", title: "add a new question" },
+                      on: {
+                        click: function($event) {
+                          _vm.showAddQuestionForm = !_vm.showAddQuestionForm
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas",
+                        class: _vm.showAddQuestionForm ? "fa-minus" : "fa-plus"
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("transition", { attrs: { name: "slide" } }, [
+                  _vm.showAddQuestionForm
+                    ? _c(
+                        "form",
+                        {
+                          staticClass: "margin-vertical-2",
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.addQuestion($event)
+                            }
+                          }
+                        },
+                        [
+                          _c("h6", [_vm._v("Add a new question:")]),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "question" } }, [
+                            _vm._v("Question:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.question,
+                                expression: "question"
+                              }
+                            ],
+                            attrs: {
+                              type: "text",
+                              required: "",
+                              id: "question"
+                            },
+                            domProps: { value: _vm.question },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.question = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "questionType" } }, [
+                            _vm._v("Type of response:")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.questionType,
+                                  expression: "questionType"
+                                }
+                              ],
+                              attrs: { id: "questionType" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.questionType = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { value: "text", selected: "" } },
+                                [_vm._v("Text Box")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "paragraph" } }, [
+                                _vm._v("Paragraph Box")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "boolean" } }, [
+                                _vm._v("Yes or No")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button",
+                              attrs: { type: "submit" }
+                            },
+                            [_vm._v("Add Question")]
+                          ),
+                          _vm._v(" "),
+                          _c("hr", { staticClass: "white" })
+                        ]
+                      )
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.questions, function(question, index) {
+                  return _c(
+                    "div",
+                    {
+                      key: index,
+                      staticClass:
+                        "grid-x bg-white border-radius align-middle question"
+                    },
+                    [
+                      _c("div", { staticClass: "cell large-10" }, [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(question.question) +
+                            "\n                "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cell large-2 text-right" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: { tabindex: "0" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteQuestion(question)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-trash" })]
+                        )
+                      ])
+                    ]
+                  )
+                })
+              ],
+              2
+            )
+          ],
+      _vm._v(" "),
+      _vm._m(0)
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "margin-top-2" }, [
+      _c("a", { attrs: { href: "/dashboard" } }, [
+        _c("i", { staticClass: "fas fa-arrow-left" }),
+        _vm._v(" go back to your dashboard")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Trials.vue?vue&type=template&id=d0bfa870&":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Trials.vue?vue&type=template&id=d0bfa870& ***!
@@ -39930,6 +40404,7 @@ var render = function() {
               _c("trial", {
                 attrs: {
                   ncit: trial.ncit,
+                  id: trial.id,
                   title: trial.title,
                   showDetails: index === 0
                 }
@@ -52264,6 +52739,7 @@ Vue.component('count-up', __webpack_require__(/*! ./components/CountUp.vue */ ".
 Vue.component('trials', __webpack_require__(/*! ./components/Trials.vue */ "./resources/js/components/Trials.vue")["default"]);
 Vue.component('trial', __webpack_require__(/*! ./components/Trial.vue */ "./resources/js/components/Trial.vue")["default"]);
 Vue.component('trial-list', __webpack_require__(/*! ./components/TrialList.vue */ "./resources/js/components/TrialList.vue")["default"]);
+Vue.component('trial-manager', __webpack_require__(/*! ./components/TrialManager.vue */ "./resources/js/components/TrialManager.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -52889,6 +53365,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialList_vue_vue_type_template_id_30c4d8f9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialList_vue_vue_type_template_id_30c4d8f9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TrialManager.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/TrialManager.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TrialManager_vue_vue_type_template_id_4ce95422___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TrialManager.vue?vue&type=template&id=4ce95422& */ "./resources/js/components/TrialManager.vue?vue&type=template&id=4ce95422&");
+/* harmony import */ var _TrialManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TrialManager.vue?vue&type=script&lang=js& */ "./resources/js/components/TrialManager.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _TrialManager_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TrialManager.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _TrialManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TrialManager_vue_vue_type_template_id_4ce95422___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TrialManager_vue_vue_type_template_id_4ce95422___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TrialManager.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TrialManager.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/TrialManager.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TrialManager.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TrialManager.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss& ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./TrialManager.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TrialManager.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TrialManager.vue?vue&type=template&id=4ce95422&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/TrialManager.vue?vue&type=template&id=4ce95422& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_template_id_4ce95422___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TrialManager.vue?vue&type=template&id=4ce95422& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TrialManager.vue?vue&type=template&id=4ce95422&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_template_id_4ce95422___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TrialManager_vue_vue_type_template_id_4ce95422___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

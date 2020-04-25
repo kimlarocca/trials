@@ -14,9 +14,9 @@
                         <h6 class="margin-top-1">Patients Screened</h6>
                     </div>
                     <div class="cell large-8">
-                        <h6><a class="icon-link" :href="'/screen/'+ncit" target="_blank"><i class="fas fa-eye"></i> view screening link</a></h6>
-                        <h6><a class="icon-link" href="#"><i class="fas fa-chart-line"></i> view screening stats</a></h6>
-                        <h6><a class="icon-link" href="#"><i class="fas fa-edit"></i> Manage Trial-Specific Questions</a></h6>
+                        <h6><a class="icon-link" :href="'/screen/'+ncit" target="_blank"><i class="fas fa-eye"></i> screening link</a></h6>
+                        <h6><a class="icon-link" :href="'/trial/'+id"><i class="fas fa-edit"></i> manage trial questions</a></h6>
+                        <h6><a class="icon-link" href="#"><i class="fas fa-chart-line"></i> view screening statistics</a></h6>
                     </div>
                 </div>
             </div>
@@ -34,6 +34,7 @@
         },
         props: {
             ncit: String,
+            id: Number,
             title: String,
             showDetails: {
                 type: Boolean,

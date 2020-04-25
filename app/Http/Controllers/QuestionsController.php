@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Question;
 
+use App\Question;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
@@ -36,5 +37,14 @@ class QuestionsController extends Controller
         $Question->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function questions($Question)
+    {
+        $questions = DB::table('questions')
+            ->where('ncit', $Question)
+            ->get();
+
+        return response()->json($questions, 200);
     }
 }

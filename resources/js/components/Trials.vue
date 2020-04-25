@@ -2,7 +2,7 @@
     <div class="grid-x grid-margin-x grid-margin-y">
         <div class="cell medium-12 large-8">
             <div v-for="(trial, index) in myTrials" :key="index">
-                <trial :ncit="trial.ncit" :title="trial.title" :showDetails="index===0"></trial>
+                <trial :ncit="trial.ncit" :id="trial.id" :title="trial.title" :showDetails="index===0"></trial>
             </div>
             <p v-if="componentMounted && myTrials.length === 0">You don't have any trials added yet. Use the form on
                 your right to import

@@ -51,7 +51,7 @@ a:active {
     color: $link-color;
     text-decoration: $link-decoration;
     transition: $transition;
-    padding-bottom: .25rem;
+    padding-bottom: .125rem;
     border-bottom: solid 1px transparent;
 
     &:hover {
@@ -74,6 +74,15 @@ a:active {
             font-weight: 900;
             content: '\f061';
             margin-left: .5rem;
+        }
+    }
+
+    &.no-underline {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+            border-bottom: none;
         }
     }
 }
@@ -107,6 +116,10 @@ hr {
     margin: 2rem 0;
     @media all and (max-width: $breakpoint-mobile) {
         margin: 1rem 0;
+    }
+
+    &.white {
+        border-top: 2px dashed $white;
     }
 }
 
