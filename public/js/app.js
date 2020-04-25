@@ -2188,6 +2188,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Screen',
@@ -2196,7 +2201,8 @@ __webpack_require__.r(__webpack_exports__);
       trialData: [],
       currentStep: 1,
       trialsFound: 0,
-      questions: null
+      questions: [],
+      submitted: false
     };
   },
   props: {
@@ -2227,21 +2233,23 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     goAhead: function goAhead() {
-      if (this.currentStep === 1 && this.questions) {
+      if (this.currentStep === 1 && this.questions.length > 0) {
         this.currentStep = 2;
       } else {
         this.currentStep = 3;
       }
     },
     goBack: function goBack() {
-      if (this.currentStep === 3 && this.questions) {
+      if (this.currentStep === 3 && this.questions.length > 0) {
         this.currentStep = 2;
       } else {
         this.currentStep = 1;
       }
     },
     submitForm: function submitForm() {
-      console.log('submit');
+      console.log('submitForm');
+      this.submitted = true;
+      this.currentStep = 4;
     }
   }
 });
@@ -39370,7 +39378,7 @@ var render = function() {
               _vm._v("Basic Questions")
             ]),
             _vm._v(" "),
-            _vm.questions
+            _vm.questions.length > 0
               ? _c("li", { class: _vm.currentStep === 2 ? "current" : "" }, [
                   _vm._v("Trial Specific Questions")
                 ])
@@ -39378,6 +39386,10 @@ var render = function() {
             _vm._v(" "),
             _c("li", { class: _vm.currentStep === 3 ? "current" : "" }, [
               _vm._v("Contact Information")
+            ]),
+            _vm._v(" "),
+            _c("li", { class: _vm.submitted ? "current" : "" }, [
+              _vm._v("Complete")
             ])
           ]),
           _vm._v(" "),
@@ -39386,538 +39398,608 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "cell medium-12 large-8 form-container" }, [
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.submitForm($event)
-            }
-          }
-        },
-        [
-          _c("transition", { attrs: { name: "fade" } }, [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.currentStep === 1,
-                    expression: "currentStep===1"
-                  }
-                ],
-                staticClass: "bg-tertiary border-radius padding-2 form"
-              },
+    _c(
+      "div",
+      {
+        staticClass:
+          "cell medium-12 large-8 form-container bg-tertiary border-radius padding-2"
+      },
+      [
+        !_vm.submitted
+          ? _c(
+              "form",
               [
-                _c("h2", { staticClass: "margin-bottom-2" }, [
-                  _vm._v("Basic Information:")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "grid-x grid-margin-x grid-margin-y" },
-                  [
-                    _c("div", { staticClass: "cell medium-4" }, [
-                      _c("p", [_vm._v("How old are you?")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "number",
-                          id: "age",
-                          min: "1",
-                          max: "120",
-                          required: ""
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "hide-ally-element",
-                          attrs: { for: "age" }
-                        },
-                        [_vm._v("Age")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell medium-4" }, [
-                      _c("p", [_vm._v("Select your gender:")]),
-                      _vm._v(" "),
-                      _c("fieldset", [
-                        _c("legend", { staticClass: "hide-ally-element" }, [
-                          _vm._v("Select your gender:")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            id: "gender-male",
-                            name: "gender",
-                            value: "male",
-                            checked: ""
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "gender-male" } }, [
-                          _vm._v("Male")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            id: "gender-female",
-                            name: "gender",
-                            value: "female"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "gender-female" } }, [
-                          _vm._v("Female")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell medium-4" }, [
-                      _c("p", [_vm._v("Are you a smoker?")]),
-                      _vm._v(" "),
-                      _c("fieldset", [
-                        _c("legend", { staticClass: "hide-ally-element" }, [
-                          _vm._v("Are you a smoker?")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            id: "smoker-yes",
-                            name: "smoker",
-                            value: "yes"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "smoker-yes" } }, [
-                          _vm._v("Yes")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            id: "smoker-no",
-                            name: "smoker",
-                            value: "no",
-                            checked: ""
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "smoker-no" } }, [
-                          _vm._v("No")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell medium-4" }, [
-                      _c("p", [_vm._v("What's your zip code?")]),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "hide-ally-element",
-                          attrs: { for: "zip" }
-                        },
-                        [_vm._v("enter your zip code")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "number",
-                          id: "zip",
-                          min: "11111",
-                          max: "99999",
-                          required: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell medium-8" }, [
-                      _c("p", [_vm._v("How far are you willing to travel?")]),
-                      _vm._v(" "),
-                      _c("fieldset", [
-                        _c("legend", { staticClass: "hide-ally-element" }, [
-                          _vm._v("How far are you willing to travel?")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            id: "distance-20",
-                            name: "distance",
-                            value: "20",
-                            checked: ""
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "distance-20" } }, [
-                          _vm._v("20 Miles")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            id: "distance-50",
-                            name: "distance",
-                            value: "50"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "distance-50" } }, [
-                          _vm._v("50 Miles")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            id: "distance-100",
-                            name: "distance",
-                            value: "100"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "distance-100" } }, [
-                          _vm._v("100 Miles")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            id: "distance-any",
-                            name: "distance",
-                            value: "any"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "distance-any" } }, [
-                          _vm._v("Any")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell medium-12" }, [
-                      _c("p", [
-                        _vm._v("Do you have any underlying conditions?")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "hide-ally-element",
-                          attrs: { for: "underlying-conditions" }
-                        },
-                        [
-                          _vm._v(
-                            "Do you have any underlying\n                                conditions?"
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("textarea", {
-                        attrs: {
-                          id: "underlying-conditions",
-                          placeholder: "heart issues, cancer, diabetes, etc."
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell medium-12" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "button",
-                          attrs: { tabindex: "0" },
-                          on: { click: _vm.goAhead }
-                        },
-                        [_vm._v("continue")]
-                      )
-                    ])
-                  ]
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("transition", { attrs: { name: "fade" } }, [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.currentStep === 2,
-                    expression: "currentStep===2"
-                  }
-                ],
-                staticClass: "bg-tertiary border-radius padding-2 form"
-              },
-              [
-                _c("h2", { staticClass: "margin-bottom-2" }, [
-                  _vm._v("Trial Specific Questions:")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "grid-x grid-margin-x grid-margin-y" },
-                  [
-                    _vm._l(_vm.questions, function(question, index) {
-                      return _c(
-                        "div",
-                        { key: index, staticClass: "cell medium-12" },
-                        [
-                          _c(
-                            "label",
-                            [
-                              _vm._v(_vm._s(question.question)),
-                              _c("br"),
-                              _c("br"),
-                              _vm._v(" "),
-                              question.question_type === "text"
-                                ? [
-                                    _c("input", {
-                                      attrs: {
-                                        type: "text",
-                                        name: "question" + index,
-                                        required: ""
-                                      }
-                                    })
-                                  ]
-                                : _vm._e(),
-                              _vm._v(" "),
-                              question.question_type === "paragraph"
-                                ? [
-                                    _c("textarea", {
-                                      attrs: {
-                                        name: "question" + index,
-                                        required: ""
-                                      }
-                                    })
-                                  ]
-                                : _vm._e(),
-                              _vm._v(" "),
-                              question.question_type === "boolean"
-                                ? [
-                                    _c("fieldset", [
-                                      _c(
-                                        "legend",
-                                        { staticClass: "hide-ally-element" },
-                                        [_vm._v(_vm._s(question.question))]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        attrs: {
-                                          type: "radio",
-                                          id: "question" + index + "yes",
-                                          name: "question" + index,
-                                          value: "yes",
-                                          checked: ""
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "label",
-                                        {
-                                          attrs: {
-                                            for: "question" + index + "yes"
-                                          }
-                                        },
-                                        [_vm._v("Yes")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        attrs: {
-                                          type: "radio",
-                                          id: "question" + index + "no",
-                                          name: "question" + index,
-                                          value: "no"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "label",
-                                        {
-                                          attrs: {
-                                            for: "question" + index + "no"
-                                          }
-                                        },
-                                        [_vm._v("No")]
-                                      )
-                                    ])
-                                  ]
-                                : _vm._e()
-                            ],
-                            2
-                          )
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "cell medium-12" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "button",
-                          attrs: { tabindex: "0" },
-                          on: { click: _vm.goBack }
-                        },
-                        [_vm._v("go back")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "button",
-                          attrs: { tabindex: "0" },
-                          on: { click: _vm.goAhead }
-                        },
-                        [_vm._v("continue")]
-                      )
-                    ])
-                  ],
-                  2
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("transition", { attrs: { name: "fade" } }, [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.currentStep === 3,
-                    expression: "currentStep===3"
-                  }
-                ],
-                staticClass: "bg-tertiary border-radius padding-2 form"
-              },
-              [
-                _c("h2", { staticClass: "margin-bottom-2" }, [
-                  _vm._v("Contact Information:")
-                ]),
-                _vm._v(" "),
-                _c("form", { attrs: { method: "POST", action: "/register" } }, [
+                _c("transition", { attrs: { name: "fade" } }, [
                   _c(
                     "div",
-                    { staticClass: "grid-x grid-margin-x grid-margin-y" },
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.currentStep === 1,
+                          expression: "currentStep===1"
+                        }
+                      ],
+                      staticClass: "bg-tertiary border-radius padding-2 form"
+                    },
                     [
-                      _c("div", { staticClass: "cell medium-12" }, [
-                        _c("label", { attrs: { for: "name" } }, [
-                          _vm._v("Your Name:")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", { attrs: { type: "text", id: "name" } })
+                      _c("h2", { staticClass: "margin-bottom-2" }, [
+                        _vm._v("Basic Information:")
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "cell medium-12" }, [
-                        _c("label", { attrs: { for: "patientname" } }, [
-                          _vm._v(
-                            "Patient's Name (if you are filling this out on behalf of\n                                    someone else):"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: { type: "text", id: "patientname" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "cell large-6 medium-12" }, [
-                        _c("label", { attrs: { for: "email" } }, [
-                          _vm._v("Email Address:")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", { attrs: { type: "email", id: "email" } })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "cell large-6 medium-12" }, [
-                        _c("label", { attrs: { for: "phone" } }, [
-                          _vm._v("Phone Number:")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", { attrs: { type: "number", id: "phone" } })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "cell large-12 medium-12" }, [
-                        _c("p", [
-                          _vm._v(
-                            "Do you want to sign up for clinical trial alerts?"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("fieldset", [
-                          _c("legend", { staticClass: "hide-ally-element" }, [
-                            _vm._v("Sign up for clinical trial alerts:")
+                      _c(
+                        "div",
+                        { staticClass: "grid-x grid-margin-x grid-margin-y" },
+                        [
+                          _c("div", { staticClass: "cell medium-4" }, [
+                            _c("p", [_vm._v("How old are you?")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: {
+                                type: "number",
+                                id: "age",
+                                min: "1",
+                                max: "120",
+                                required: ""
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "hide-ally-element",
+                                attrs: { for: "age" }
+                              },
+                              [_vm._v("Age")]
+                            )
                           ]),
                           _vm._v(" "),
-                          _c("input", {
-                            attrs: {
-                              type: "radio",
-                              id: "subscribe-yes",
-                              name: "subscribe",
-                              value: "1",
-                              checked: ""
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "subscribe-yes" } }, [
-                            _vm._v("Yes")
+                          _c("div", { staticClass: "cell medium-4" }, [
+                            _c("p", [_vm._v("Select your gender:")]),
+                            _vm._v(" "),
+                            _c("fieldset", [
+                              _c(
+                                "legend",
+                                { staticClass: "hide-ally-element" },
+                                [_vm._v("Select your gender:")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "radio",
+                                  id: "gender-male",
+                                  name: "gender",
+                                  value: "male",
+                                  checked: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "gender-male" } }, [
+                                _vm._v("Male")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "radio",
+                                  id: "gender-female",
+                                  name: "gender",
+                                  value: "female"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "gender-female" } }, [
+                                _vm._v("Female")
+                              ])
+                            ])
                           ]),
                           _vm._v(" "),
-                          _c("input", {
-                            attrs: {
-                              type: "radio",
-                              id: "subscribe-no",
-                              name: "subscribe",
-                              value: "0"
-                            }
-                          }),
+                          _c("div", { staticClass: "cell medium-4" }, [
+                            _c("p", [_vm._v("Are you a smoker?")]),
+                            _vm._v(" "),
+                            _c("fieldset", [
+                              _c(
+                                "legend",
+                                { staticClass: "hide-ally-element" },
+                                [_vm._v("Are you a smoker?")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "radio",
+                                  id: "smoker-yes",
+                                  name: "smoker",
+                                  value: "yes"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "smoker-yes" } }, [
+                                _vm._v("Yes")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "radio",
+                                  id: "smoker-no",
+                                  name: "smoker",
+                                  value: "no",
+                                  checked: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "smoker-no" } }, [
+                                _vm._v("No")
+                              ])
+                            ])
+                          ]),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "subscribe-no" } }, [
-                            _vm._v("No")
+                          _c("div", { staticClass: "cell medium-4" }, [
+                            _c("p", [_vm._v("What's your zip code?")]),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "hide-ally-element",
+                                attrs: { for: "zip" }
+                              },
+                              [_vm._v("enter your zip code")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: {
+                                type: "number",
+                                id: "zip",
+                                min: "11111",
+                                max: "99999",
+                                required: ""
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "cell medium-8" }, [
+                            _c("p", [
+                              _vm._v("How far are you willing to travel?")
+                            ]),
+                            _vm._v(" "),
+                            _c("fieldset", [
+                              _c(
+                                "legend",
+                                { staticClass: "hide-ally-element" },
+                                [_vm._v("How far are you willing to travel?")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "radio",
+                                  id: "distance-20",
+                                  name: "distance",
+                                  value: "20",
+                                  checked: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "distance-20" } }, [
+                                _vm._v("20 Miles")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "radio",
+                                  id: "distance-50",
+                                  name: "distance",
+                                  value: "50"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "distance-50" } }, [
+                                _vm._v("50 Miles")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "radio",
+                                  id: "distance-100",
+                                  name: "distance",
+                                  value: "100"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "distance-100" } }, [
+                                _vm._v("100 Miles")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "radio",
+                                  id: "distance-any",
+                                  name: "distance",
+                                  value: "any"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "distance-any" } }, [
+                                _vm._v("Any")
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "cell medium-12" }, [
+                            _c("p", [
+                              _vm._v("Do you have any underlying conditions?")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "hide-ally-element",
+                                attrs: { for: "underlying-conditions" }
+                              },
+                              [
+                                _vm._v(
+                                  "Do you have any underlying\n                                conditions?"
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              attrs: {
+                                id: "underlying-conditions",
+                                placeholder:
+                                  "heart issues, cancer, diabetes, etc."
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "cell medium-12" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "button",
+                                attrs: { tabindex: "0" },
+                                on: { click: _vm.goAhead }
+                              },
+                              [_vm._v("continue")]
+                            )
                           ])
-                        ])
+                        ]
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("transition", { attrs: { name: "fade" } }, [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.currentStep === 2,
+                          expression: "currentStep===2"
+                        }
+                      ],
+                      staticClass: "bg-tertiary border-radius padding-2 form"
+                    },
+                    [
+                      _c("h2", { staticClass: "margin-bottom-2" }, [
+                        _vm._v("Trial Specific Questions:")
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "cell large-12 medium-12" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button",
-                            attrs: { tabindex: "0" },
-                            on: { click: _vm.goBack }
-                          },
-                          [_vm._v("go back")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          { staticClass: "button", attrs: { tabindex: "0" } },
-                          [_vm._v("save & submit")]
-                        )
-                      ])
+                      _c(
+                        "div",
+                        { staticClass: "grid-x grid-margin-x grid-margin-y" },
+                        [
+                          _vm._l(_vm.questions, function(question, index) {
+                            return _c(
+                              "div",
+                              { key: index, staticClass: "cell medium-12" },
+                              [
+                                _c(
+                                  "label",
+                                  [
+                                    _vm._v(_vm._s(question.question)),
+                                    _c("br"),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    question.question_type === "text"
+                                      ? [
+                                          _c("input", {
+                                            attrs: {
+                                              type: "text",
+                                              name: "question" + index,
+                                              required: ""
+                                            }
+                                          })
+                                        ]
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    question.question_type === "paragraph"
+                                      ? [
+                                          _c("textarea", {
+                                            attrs: {
+                                              name: "question" + index,
+                                              required: ""
+                                            }
+                                          })
+                                        ]
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    question.question_type === "boolean"
+                                      ? [
+                                          _c("fieldset", [
+                                            _c(
+                                              "legend",
+                                              {
+                                                staticClass: "hide-ally-element"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(question.question)
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              attrs: {
+                                                type: "radio",
+                                                id: "question" + index + "yes",
+                                                name: "question" + index,
+                                                value: "yes",
+                                                checked: ""
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                attrs: {
+                                                  for:
+                                                    "question" + index + "yes"
+                                                }
+                                              },
+                                              [_vm._v("Yes")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              attrs: {
+                                                type: "radio",
+                                                id: "question" + index + "no",
+                                                name: "question" + index,
+                                                value: "no"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                attrs: {
+                                                  for: "question" + index + "no"
+                                                }
+                                              },
+                                              [_vm._v("No")]
+                                            )
+                                          ])
+                                        ]
+                                      : _vm._e()
+                                  ],
+                                  2
+                                )
+                              ]
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "cell medium-12" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "button",
+                                attrs: { tabindex: "0" },
+                                on: { click: _vm.goBack }
+                              },
+                              [_vm._v("go back")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "button",
+                                attrs: { tabindex: "0" },
+                                on: { click: _vm.goAhead }
+                              },
+                              [_vm._v("continue")]
+                            )
+                          ])
+                        ],
+                        2
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("transition", { attrs: { name: "fade" } }, [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.currentStep === 3,
+                          expression: "currentStep===3"
+                        }
+                      ],
+                      staticClass: "bg-tertiary border-radius padding-2 form"
+                    },
+                    [
+                      _c("h2", { staticClass: "margin-bottom-2" }, [
+                        _vm._v("Contact Information:")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "form",
+                        { attrs: { method: "POST", action: "/register" } },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "grid-x grid-margin-x grid-margin-y"
+                            },
+                            [
+                              _c("div", { staticClass: "cell medium-12" }, [
+                                _c("label", { attrs: { for: "name" } }, [
+                                  _vm._v("Your Name:")
+                                ]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "text", id: "name" }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "cell medium-12" }, [
+                                _c("label", { attrs: { for: "patientname" } }, [
+                                  _vm._v(
+                                    "Patient's Name (if you are filling this out on behalf of\n                                    someone else):"
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "text", id: "patientname" }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "cell large-6 medium-12" },
+                                [
+                                  _c("label", { attrs: { for: "email" } }, [
+                                    _vm._v("Email Address:")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: { type: "email", id: "email" }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "cell large-6 medium-12" },
+                                [
+                                  _c("label", { attrs: { for: "phone" } }, [
+                                    _vm._v("Phone Number:")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: { type: "number", id: "phone" }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "cell large-12 medium-12" },
+                                [
+                                  _c("p", [
+                                    _vm._v(
+                                      "Do you want to sign up for clinical trial alerts?"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("fieldset", [
+                                    _c(
+                                      "legend",
+                                      { staticClass: "hide-ally-element" },
+                                      [
+                                        _vm._v(
+                                          "Sign up for clinical trial alerts:"
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: {
+                                        type: "radio",
+                                        id: "subscribe-yes",
+                                        name: "subscribe",
+                                        value: "1",
+                                        checked: ""
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "subscribe-yes" } },
+                                      [_vm._v("Yes")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: {
+                                        type: "radio",
+                                        id: "subscribe-no",
+                                        name: "subscribe",
+                                        value: "0"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "subscribe-no" } },
+                                      [_vm._v("No")]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "cell large-12 medium-12" },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "button",
+                                      attrs: { tabindex: "0" },
+                                      on: { click: _vm.goBack }
+                                    },
+                                    [_vm._v("go back")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button",
+                                      attrs: { type: "submit" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.submitForm($event)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("save & submit")]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
                     ]
                   )
                 ])
-              ]
+              ],
+              1
             )
-          ])
-        ],
-        1
-      )
-    ])
+          : _c("div", [
+              _c("h6", [_vm._v("Thank you!")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("Your screening has been successfully submitted.")
+              ])
+            ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [

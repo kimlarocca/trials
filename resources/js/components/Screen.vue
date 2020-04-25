@@ -11,16 +11,17 @@
                         target="_blank">{{ncit}}</a></p>
                     <ul class="stepper">
                         <li :class="currentStep===1 ? 'current' : ''">Basic Questions</li>
-                        <li v-if="questions" :class="currentStep===2 ? 'current' : ''">Trial Specific Questions</li>
+                        <li v-if="questions.length > 0" :class="currentStep===2 ? 'current' : ''">Trial Specific Questions</li>
                         <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
+                        <li :class="submitted ? 'current' : ''">Complete</li>
                     </ul>
                     <p class="padding-vertical-3"><em>* screening online does not guarantee entry into a clinical
                         trial</em></p>
                 </div>
             </div>
         </div>
-        <div class="cell medium-12 large-8 form-container">
-            <form @submit.prevent="submitForm">
+        <div class="cell medium-12 large-8 form-container bg-tertiary border-radius padding-2">
+            <form v-if="!submitted">
                 <transition name="fade">
                     <div v-show="currentStep===1" class="bg-tertiary border-radius padding-2 form">
                         <h2 class="margin-bottom-2">Basic Information:</h2>
@@ -144,13 +145,17 @@
                                 </div>
                                 <div class="cell large-12 medium-12">
                                     <a class="button" tabindex="0" @click="goBack">go back</a>
-                                    <a class="button" tabindex="0">save & submit</a>
+                                    <button type="submit" class="button" @click.prevent="submitForm">save & submit</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </transition>
             </form>
+            <div v-else>
+                <h6>Thank you!</h6>
+                <p>Your screening has been successfully submitted.</p>
+            </div>
         </div>
     </div>
 </template>
@@ -165,7 +170,8 @@
                 trialData: [],
                 currentStep: 1,
                 trialsFound: 0,
-                questions: null
+                questions: [],
+                submitted: false
             }
         },
         props: {
@@ -198,21 +204,23 @@
                     })
             },
             goAhead () {
-                if (this.currentStep === 1 && this.questions) {
+                if (this.currentStep === 1 && this.questions.length > 0) {
                     this.currentStep = 2
                 } else {
                     this.currentStep = 3
                 }
             },
             goBack () {
-                if (this.currentStep === 3 && this.questions) {
+                if (this.currentStep === 3 && this.questions.length > 0) {
                     this.currentStep = 2
                 } else {
                     this.currentStep = 1
                 }
             },
             submitForm () {
-                console.log('submit')
+                console.log('submitForm')
+                this.submitted = true
+                this.currentStep = 4
             }
         }
     }
