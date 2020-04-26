@@ -10,15 +10,12 @@
                         :href="'https://clinicaltrials.gov/ct2/show/'+ncit"
                         target="_blank">{{ncit}}</a></p>
                     <ul class="stepper">
-                        <li :class="currentStep===1 ? 'current' : ''">Basic Questions</li>
-                        <li v-if="questions.length > 0" :class="currentStep===2 ? 'current' : ''">Trial Specific
-                            Questions
-                        </li>
-                        <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
-                        <li :class="submitted ? 'current' : ''">Complete</li>
+                        <li :class="currentStep===1 ? 'current' : ''"><span class="show-for-large">Basic Questions</span></li>
+                        <li v-if="questions.length > 0" :class="currentStep===2 ? 'current' : ''"><span class="show-for-large">Trial Specific
+                            Questions</span></li>
+                        <li :class="currentStep===3 ? 'current' : ''"><span class="show-for-large">Contact Information</span></li>
+                        <li :class="submitted ? 'current' : ''"><span class="show-for-large">Complete</span></li>
                     </ul>
-                    <p class="padding-vertical-3"><em>* screening online does not guarantee entry into a clinical
-                        trial</em></p>
                 </div>
             </div>
         </div>
@@ -185,6 +182,10 @@
                 <h6>Thank you!</h6>
                 <p>Your screening has been successfully submitted.</p>
             </div>
+        </div>
+        <div class="cell medium-12">
+            <p class="padding-vertical-3 text-center"><em>* screening online does not guarantee entry into a clinical
+                trial</em></p>
         </div>
     </div>
 </template>
@@ -354,6 +355,9 @@
                 width: 1px;
                 height: 100%;
                 border-left: 1px solid $inactive;
+                @media all and (max-width: $breakpoint-tablet) {
+                    display: none;
+                }
             }
 
             li {
@@ -362,6 +366,11 @@
                 padding-left: $icon-size + 1rem;
                 line-height: $icon-size;
                 color: $inactive;
+
+                @media all and (max-width: $breakpoint-tablet) {
+                    display: inline-block;
+                    height: $icon-size;
+                }
 
                 &:not(:last-child) {
                     padding-bottom: 20px;

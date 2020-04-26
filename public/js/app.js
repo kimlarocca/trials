@@ -2224,6 +2224,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7317,7 +7318,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap);", ""]);
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.screen {\n  position: relative;\n  background: url(\"/images/screen-hero.png\") no-repeat top left;\n}\n.screen input,\n.screen textarea {\n  border: 1px solid transparent;\n  margin: 0;\n}\n.screen .stepper {\n  position: relative;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.screen .stepper::before {\n  display: inline-block;\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 1rem;\n  width: 1px;\n  height: 100%;\n  border-left: 1px solid #dedce5;\n}\n.screen .stepper li {\n  position: relative;\n  counter-increment: list;\n  padding-left: 3rem;\n  line-height: 2rem;\n  color: #dedce5;\n}\n.screen .stepper li:not(:last-child) {\n  padding-bottom: 20px;\n}\n.screen .stepper li::after {\n  display: inline-block;\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: \"\\F192\";\n  font-family: \"Font Awesome 5 Free\";\n  font-weight: 900;\n  font-size: 2rem;\n  color: #dedce5;\n  text-align: center;\n  background: #fff;\n}\n.screen .stepper li.done {\n  color: #272023;\n}\n.screen .stepper li.done::after {\n  content: \"\\F058\";\n  color: #4458a3;\n}\n.screen .stepper li.current {\n  font-weight: 700;\n  color: #272023;\n}\n.screen .stepper li.current::after {\n  color: #ff7575;\n}\n.screen .cell {\n  position: relative;\n}\n.screen .error-text {\n  display: none;\n}\n.screen .error input {\n  border: 1px solid #ff7575 !important;\n}\n.screen .error .error-text {\n  display: block;\n}\n.screen .error-text,\n.screen .error-message {\n  color: #ff7575;\n  font-size: 0.75em;\n  margin-top: 0.25rem;\n}\n.screen .error-message {\n  font-size: 1rem;\n  margin-top: 1rem;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.screen {\n  position: relative;\n  background: url(\"/images/screen-hero.png\") no-repeat top left;\n}\n.screen input,\n.screen textarea {\n  border: 1px solid transparent;\n  margin: 0;\n}\n.screen .stepper {\n  position: relative;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.screen .stepper::before {\n  display: inline-block;\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 1rem;\n  width: 1px;\n  height: 100%;\n  border-left: 1px solid #dedce5;\n}\n@media all and (max-width: 1100px) {\n.screen .stepper::before {\n    display: none;\n}\n}\n.screen .stepper li {\n  position: relative;\n  counter-increment: list;\n  padding-left: 3rem;\n  line-height: 2rem;\n  color: #dedce5;\n}\n@media all and (max-width: 1100px) {\n.screen .stepper li {\n    display: inline-block;\n    height: 2rem;\n}\n}\n.screen .stepper li:not(:last-child) {\n  padding-bottom: 20px;\n}\n.screen .stepper li::after {\n  display: inline-block;\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: \"\\F192\";\n  font-family: \"Font Awesome 5 Free\";\n  font-weight: 900;\n  font-size: 2rem;\n  color: #dedce5;\n  text-align: center;\n  background: #fff;\n}\n.screen .stepper li.done {\n  color: #272023;\n}\n.screen .stepper li.done::after {\n  content: \"\\F058\";\n  color: #4458a3;\n}\n.screen .stepper li.current {\n  font-weight: 700;\n  color: #272023;\n}\n.screen .stepper li.current::after {\n  color: #ff7575;\n}\n.screen .cell {\n  position: relative;\n}\n.screen .error-text {\n  display: none;\n}\n.screen .error input {\n  border: 1px solid #ff7575 !important;\n}\n.screen .error .error-text {\n  display: block;\n}\n.screen .error-text,\n.screen .error-message {\n  color: #ff7575;\n  font-size: 0.75em;\n  margin-top: 0.25rem;\n}\n.screen .error-message {\n  font-size: 1rem;\n  margin-top: 1rem;\n}", ""]);
 
 // exports
 
@@ -39467,27 +39468,31 @@ var render = function() {
           _vm._v(" "),
           _c("ul", { staticClass: "stepper" }, [
             _c("li", { class: _vm.currentStep === 1 ? "current" : "" }, [
-              _vm._v("Basic Questions")
+              _c("span", { staticClass: "show-for-large" }, [
+                _vm._v("Basic Questions")
+              ])
             ]),
             _vm._v(" "),
             _vm.questions.length > 0
               ? _c("li", { class: _vm.currentStep === 2 ? "current" : "" }, [
-                  _vm._v(
-                    "Trial Specific\n                        Questions\n                    "
-                  )
+                  _c("span", { staticClass: "show-for-large" }, [
+                    _vm._v("Trial Specific\n                        Questions")
+                  ])
                 ])
               : _vm._e(),
             _vm._v(" "),
             _c("li", { class: _vm.currentStep === 3 ? "current" : "" }, [
-              _vm._v("Contact Information")
+              _c("span", { staticClass: "show-for-large" }, [
+                _vm._v("Contact Information")
+              ])
             ]),
             _vm._v(" "),
             _c("li", { class: _vm.submitted ? "current" : "" }, [
-              _vm._v("Complete")
+              _c("span", { staticClass: "show-for-large" }, [
+                _vm._v("Complete")
+              ])
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
+          ])
         ])
       ])
     ]),
@@ -40488,7 +40493,9 @@ var render = function() {
               ])
             ])
       ]
-    )
+    ),
+    _vm._v(" "),
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
@@ -40496,11 +40503,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "padding-vertical-3" }, [
-      _c("em", [
-        _vm._v(
-          "* screening online does not guarantee entry into a clinical\n                    trial"
-        )
+    return _c("div", { staticClass: "cell medium-12" }, [
+      _c("p", { staticClass: "padding-vertical-3 text-center" }, [
+        _c("em", [
+          _vm._v(
+            "* screening online does not guarantee entry into a clinical\n            trial"
+          )
+        ])
       ])
     ])
   }
