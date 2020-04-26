@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b38a959b-71a6-4e00-8a74-158fbdc433a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Screen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Screen.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_forms.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +181,7 @@
       <workItem from="1587310349087" duration="3000" />
       <workItem from="1587316897505" duration="27000" />
       <workItem from="1587322176906" duration="15000" />
-      <workItem from="1587562317183" duration="47301000" />
+      <workItem from="1587562317183" duration="56725000" />
     </task>
     <servers />
   </component>

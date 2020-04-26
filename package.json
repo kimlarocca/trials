@@ -32,7 +32,8 @@
         "@fortawesome/fontawesome-free": "^5.13.0",
         "apexcharts": "^3.19.0",
         "foundation-sites": "^6.6.3",
-        "vue-apexcharts": "^1.5.3"
+        "vue-apexcharts": "^1.5.3",
+        "vuelidate": "^0.7.5"
     },
     "resolutions": {
         "minimist": "^1.2.5"

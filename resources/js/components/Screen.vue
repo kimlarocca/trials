@@ -11,7 +11,9 @@
                         target="_blank">{{ncit}}</a></p>
                     <ul class="stepper">
                         <li :class="currentStep===1 ? 'current' : ''">Basic Questions</li>
-                        <li v-if="questions.length > 0" :class="currentStep===2 ? 'current' : ''">Trial Specific Questions</li>
+                        <li v-if="questions.length > 0" :class="currentStep===2 ? 'current' : ''">Trial Specific
+                            Questions
+                        </li>
                         <li :class="currentStep===3 ? 'current' : ''">Contact Information</li>
                         <li :class="submitted ? 'current' : ''">Complete</li>
                     </ul>
@@ -26,47 +28,57 @@
                     <div v-show="currentStep===1" class="bg-tertiary border-radius padding-2 form">
                         <h2 class="margin-bottom-2">Basic Information:</h2>
                         <div class="grid-x grid-margin-x grid-margin-y">
-                            <div class="cell medium-4">
+                            <div class="cell medium-6 large-4">
                                 <p>How old are you?</p>
-                                <input type="number" id="age" min="1" max="120" required>
-                                <label for="age" class="hide-ally-element">Age</label>
+                                <div class="form-group"
+                                     :class="{ 'error': $v.age.$error, 'error': step1ErrorsFound && $v.age.$invalid }">
+                                    <label for="age" class="hide-ally-element">Age</label>
+                                    <input type="number" id="age" v-model.trim="$v.age.$model"
+                                           :class="{ 'error': !$v.age.required }">
+                                    <div class="error-text">* age must be a number between 0 and 120</div>
+                                </div>
                             </div>
-                            <div class="cell medium-4">
+                            <div class="cell medium-6 large-4">
                                 <p>Select your gender:</p>
                                 <fieldset>
                                     <legend class="hide-ally-element">Select your gender:</legend>
-                                    <input type="radio" id="gender-male" name="gender" value="male" checked>
+                                    <input type="radio" id="gender-male" name="gender" value="male" v-model="gender">
                                     <label for="gender-male">Male</label>
-                                    <input type="radio" id="gender-female" name="gender" value="female">
+                                    <input type="radio" id="gender-female" name="gender" value="female" v-model="gender">
                                     <label for="gender-female">Female</label>
                                 </fieldset>
                             </div>
-                            <div class="cell medium-4">
+                            <div class="cell medium-6 large-4">
                                 <p>Are you a smoker?</p>
                                 <fieldset>
                                     <legend class="hide-ally-element">Are you a smoker?</legend>
-                                    <input type="radio" id="smoker-yes" name="smoker" value="yes">
+                                    <input type="radio" id="smoker-yes" name="smoker" value="yes" v-model="smoker">
                                     <label for="smoker-yes">Yes</label>
-                                    <input type="radio" id="smoker-no" name="smoker" value="no" checked>
+                                    <input type="radio" id="smoker-no" name="smoker" value="no" v-model="smoker">
                                     <label for="smoker-no">No</label>
                                 </fieldset>
                             </div>
-                            <div class="cell medium-4">
+                            <div class="cell medium-6 large-4">
                                 <p>What's your zip code?</p>
-                                <label for="zip" class="hide-ally-element">enter your zip code</label>
-                                <input type="number" id="zip" min="11111" max="99999" required>
+                                <div class="form-group"
+                                     :class="{ 'error': $v.zip.$error, 'error': step1ErrorsFound && $v.zip.$invalid  }">
+                                    <label for="zip" class="hide-ally-element">enter your zip code</label>
+                                    <input type="number" id="zip" v-model.trim="$v.zip.$model"
+                                           :class="{ 'error': !$v.zip.required }">
+                                    <div class="error-text">* zip code must be 5 numbers</div>
+                                </div>
                             </div>
-                            <div class="cell medium-8">
+                            <div class="cell medium-12 large-8">
                                 <p>How far are you willing to travel?</p>
                                 <fieldset>
                                     <legend class="hide-ally-element">How far are you willing to travel?</legend>
-                                    <input type="radio" id="distance-20" name="distance" value="20" checked>
+                                    <input type="radio" id="distance-20" name="distance" value="20" v-model="distance">
                                     <label for="distance-20">20 Miles</label>
-                                    <input type="radio" id="distance-50" name="distance" value="50">
+                                    <input type="radio" id="distance-50" name="distance" value="50" v-model="distance">
                                     <label for="distance-50">50 Miles</label>
-                                    <input type="radio" id="distance-100" name="distance" value="100">
+                                    <input type="radio" id="distance-100" name="distance" value="100" v-model="distance">
                                     <label for="distance-100">100 Miles</label>
-                                    <input type="radio" id="distance-any" name="distance" value="any">
+                                    <input type="radio" id="distance-any" name="distance" value="any" v-model="distance">
                                     <label for="distance-any">Any</label>
                                 </fieldset>
                             </div>
@@ -75,10 +87,12 @@
                                 <label for="underlying-conditions" class="hide-ally-element">Do you have any underlying
                                     conditions?</label>
                                 <textarea id="underlying-conditions"
-                                          placeholder="heart issues, cancer, diabetes, etc."></textarea>
+                                          placeholder="heart issues, cancer, diabetes, etc." v-model="conditions"></textarea>
                             </div>
                             <div class="cell medium-12">
                                 <a class="button" tabindex="0" @click="goAhead">continue</a>
+                                <p v-if="step1ErrorsFound" class="error-message">You have a few errors, please fix them
+                                    before continuing!</p>
                             </div>
                         </div>
                     </div>
@@ -121,31 +135,46 @@
                         <form method="POST" action="/register">
                             <div class="grid-x grid-margin-x grid-margin-y">
                                 <div class="cell medium-12">
-                                    <label for="name">Your Name:</label> <input type="text" id="name">
+                                    <div class="form-group"
+                                         :class="{ 'error': $v.name.$error, 'error': step3ErrorsFound && $v.name.$invalid  }">
+                                        <label for="name">Your Name:</label>
+                                        <input type="text" id="name" v-model.trim="$v.name.$model"
+                                               :class="{ 'error': !$v.name.required }">
+                                        <div class="error-text">* name is required</div>
+                                    </div>
                                 </div>
                                 <div class="cell medium-12">
                                     <label for="patientname">Patient's Name (if you are filling this out on behalf of
-                                        someone else):</label> <input type="text" id="patientname">
+                                        someone else):</label> <input type="text" id="patientname" v-model="patientName">
                                 </div>
                                 <div class="cell large-6 medium-12">
-                                    <label for="email">Email Address:</label> <input type="email" id="email">
+                                    <div class="form-group"
+                                         :class="{ 'error': $v.email.$error, 'error': step3ErrorsFound && $v.email.$invalid  }">
+                                        <label for="name">Email Address:</label>
+                                        <input type="email" id="email" v-model.trim="$v.email.$model"
+                                               :class="{ 'error': !$v.email.required }">
+                                        <div class="error-text">* please enter a valid email address</div>
+                                    </div>
                                 </div>
                                 <div class="cell large-6 medium-12">
-                                    <label for="phone">Phone Number:</label> <input type="number" id="phone">
+                                    <label for="phone">Phone Number:</label> <input type="number" id="phone" v-model="phone">
                                 </div>
                                 <div class="cell large-12 medium-12">
                                     <p>Do you want to sign up for clinical trial alerts?</p>
                                     <fieldset>
                                         <legend class="hide-ally-element">Sign up for clinical trial alerts:</legend>
-                                        <input type="radio" id="subscribe-yes" name="subscribe" value="1" checked>
+                                        <input type="radio" id="subscribe-yes" name="subscribe" value="1" v-model="subscribe">
                                         <label for="subscribe-yes">Yes</label>
-                                        <input type="radio" id="subscribe-no" name="subscribe" value="0">
+                                        <input type="radio" id="subscribe-no" name="subscribe" value="0" v-model="subscribe">
                                         <label for="subscribe-no">No</label>
                                     </fieldset>
                                 </div>
                                 <div class="cell large-12 medium-12">
                                     <a class="button" tabindex="0" @click="goBack">go back</a>
-                                    <button type="submit" class="button" @click.prevent="submitForm">save & submit</button>
+                                    <button type="submit" class="button" @click.prevent="submitForm">submit</button>
+                                    <p v-if="step3ErrorsFound" class="error-message">You have a few errors, please fix
+                                        them
+                                        before continuing!</p>
                                 </div>
                             </div>
                         </form>
@@ -162,6 +191,7 @@
 
 <script>
     import axios from 'axios'
+    import {required, numeric, maxLength, minLength, minValue, maxValue, email} from 'vuelidate/lib/validators'
 
     export default {
         name: 'Screen',
@@ -171,7 +201,41 @@
                 currentStep: 1,
                 trialsFound: 0,
                 questions: [],
-                submitted: false
+                step1ErrorsFound: false,
+                step3ErrorsFound: false,
+                submitted: false,
+                age: '',
+                gender: 'male',
+                smoker: 'no',
+                zip: '',
+                distance: 'any',
+                conditions: '',
+                name: '',
+                patientName: '',
+                email: '',
+                phone: '',
+                subscribe: 'yes'
+            }
+        },
+        validations: {
+            age: {
+                required,
+                numeric,
+                minValue: minValue(0),
+                maxValue: maxValue(120)
+            },
+            zip: {
+                required,
+                numeric,
+                minLength: minLength(5),
+                maxLength: maxLength(5)
+            },
+            name: {
+                required
+            },
+            email: {
+                required,
+                email
             }
         },
         props: {
@@ -204,23 +268,48 @@
                     })
             },
             goAhead () {
-                if (this.currentStep === 1 && this.questions.length > 0) {
-                    this.currentStep = 2
-                } else {
+                if (this.currentStep === 1) {
+                    if (!this.$v.age.$invalid && !this.$v.zip.$invalid) {
+                        this.step1ErrorsFound = false
+                        if (this.questions.length > 0) {
+                            this.currentStep = 2
+                        } else {
+                            this.currentStep = 3
+                        }
+                    } else {
+                        this.step1ErrorsFound = true
+                    }
+                }
+                else if (this.currentStep === 2) {
                     this.currentStep = 3
                 }
             },
             goBack () {
-                if (this.currentStep === 3 && this.questions.length > 0) {
-                    this.currentStep = 2
-                } else {
+                if (this.currentStep === 3) {
+                    if (!this.$v.name.$invalid && !this.$v.email.$invalid) {
+                        this.step3ErrorsFound = false
+                        if (this.questions.length > 0) {
+                            this.currentStep = 2
+                        } else {
+                            this.currentStep = 1
+                        }
+                    } else {
+                        this.step3ErrorsFound = true
+                    }
+                }
+                else if (this.currentStep === 2) {
                     this.currentStep = 1
                 }
             },
             submitForm () {
                 console.log('submitForm')
-                this.submitted = true
-                this.currentStep = 4
+                if (!this.$v.$invalid) {
+                    this.errorsFound = false
+                    this.submitted = true
+                    this.currentStep = 4
+                } else {
+                    this.step3ErrorsFound = true
+                }
             }
         }
     }
@@ -314,6 +403,32 @@
 
         .cell {
             position: relative;
+        }
+
+        .error-text {
+            display: none;
+        }
+
+        .error {
+            input {
+                border: 1px solid $secondary !important;
+            }
+
+            .error-text {
+                display: block;
+            }
+        }
+
+        .error-text,
+        .error-message {
+            color: $secondary;
+            font-size: 0.75em;
+            margin-top: .25rem;
+        }
+
+        .error-message {
+            font-size: 1rem;
+            margin-top: 1rem;
         }
     }
 </style>
