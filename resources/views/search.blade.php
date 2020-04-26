@@ -12,9 +12,7 @@
         <div class="grid-x grid-margin-x grid-margin-y align-bottom hero">
             <div class="cell medium-12 large-5">
                 <h1>Search Clinical Trials</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi consectetur consequuntur
-                    debitis earum, impedit iure libero maxime modi molestiae praesentium provident ratione sapiente
-                    tenetur velit voluptatem voluptatum. Accusamus, exercitationem?</p>
+                <p>This page is coming soon, please check back later!</p>
             </div>
         </div>
     </section>

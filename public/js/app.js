@@ -2247,7 +2247,7 @@ __webpack_require__.r(__webpack_exports__);
       patientName: '',
       email: '',
       phone: '',
-      subscribe: 'yes'
+      subscribe: '1'
     };
   },
   validations: {
@@ -39496,7 +39496,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "cell medium-12 large-8 form-container bg-tertiary border-radius padding-2"
+          "cell medium-12 large-8 form-container bg-tertiary border-radius"
       },
       [
         !_vm.submitted

@@ -7,14 +7,14 @@
 
     <section class="container">
         <div class="grid-x grid-margin-x grid-margin-y hero">
-            <div class="cell medium-12 large-4 padding-top-3">
+            <div class="cell medium-12 large-4 padding-top-3 small-order-2 large-order-1">
                 <h3>Need help recruiting?</h3>
                 <p>Recruiting for clinical trials has become increasingly difficult over the years. Learn more about
                     ScreenMe and its easy to use interface that helps find and route patients to your clinical trial
                     centers.</p>
                 <p><a href="#" class="learn-more">Contact us to get started</a></p>
             </div>
-            <div class="cell medium-12 large-8 bg-light-gray border-radius padding-2">
+            <div class="cell medium-12 large-8 bg-light-gray border-radius padding-2 small-order-1 large-order-2">
                 <h1 class="margin-bottom-2 like-h2">Client Login</h1>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf

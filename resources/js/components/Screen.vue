@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="cell medium-12 large-8 form-container bg-tertiary border-radius padding-2">
+        <div class="cell medium-12 large-8 form-container bg-tertiary border-radius">
             <form v-if="!submitted">
                 <transition name="fade">
                     <div v-show="currentStep===1" class="bg-tertiary border-radius padding-2 form">
@@ -214,7 +214,7 @@
                 patientName: '',
                 email: '',
                 phone: '',
-                subscribe: 'yes'
+                subscribe: '1'
             }
         },
         validations: {
